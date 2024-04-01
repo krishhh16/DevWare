@@ -1,35 +1,47 @@
 "use client"
 
+import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { object, string } from 'zod';
-import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const userDataSchema = object({
-  name: string(),
+  username: string(),
   email: string().email(),
   password: string(),
 });
 const SignupPage = () => {
-
+  const navigator = useRouter();
+  
   const [userData, setData] = useState(() => {
     // Initial userData object
     return userDataSchema.parse({
-      name: "",
+      username: "",
       email: "johndoe@gmail.com",
       password: "",
     });
   });
   const [confirmData, setConfirmData] = useState('')
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
       e.preventDefault()
       console.log(userData)
       if (userData.password != confirmData) {
         return alert("Please put the same password in confirm password field")
       }
-
-      axios.post(`${process.env.BACKENDURL}/api/auth/signup`, userData)
-      
+      try {
+      const response = await axios.post("http://localhost:3001/signup", userData)
+      console.log(response.data)
+    
+      if (!response.data.success) {
+        alert("User already exists with the following credentials")
+      }else {
+        navigator.push("/signin")
+      }
+      }
+       catch (err) {
+        alert(err)
+      }
   }
   const updateUserData = (key: string, value: string) => {
     setData(prevUserData => ({
@@ -65,8 +77,8 @@ const SignupPage = () => {
                     </label>
                     <input
                       type="text"
-                      name="name"
-                      value={userData.name}
+                      name="username"
+                      value={userData.username}
                       onChange={e => {
                         updateUserData(e.target.name, e.target.value)
                       }}
