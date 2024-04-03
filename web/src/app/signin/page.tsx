@@ -20,21 +20,18 @@ const SignupPage = () => {
       password: "",
     });
   });
-  const [confirmData, setConfirmData] = useState('')
   const submitHandler = async (e) => {
       e.preventDefault()
       console.log(userData)
-      if (userData.password != confirmData) {
-        return alert("Please put the same password in confirm password field")
-      }
+
       try {
       const response = await axios.post("http://localhost:3001/signin", userData)
       console.log(response.data)
     
       if (!response.data.success) {
-        alert("User already exists with the following credentials")
+        alert("Invalid user credentials")
       }else {
-        navigator.push("/signin")
+        navigator.push("/dashboard")
       }
       }
        catch (err) {

@@ -83,7 +83,7 @@ app.post("/signin",async (req, res) => {
                 sameSite: "strict"
             })
             console.log('user token created')
-            res.json({token})
+            return res.status(200).json({token, success: true})
         })
 
         
