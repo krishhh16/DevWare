@@ -1,10 +1,18 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
-import jwt from "jsonwebtoken"
-
+import jwt, { JwtPayload } from "jsonwebtoken";
+import cookieParser from "cookie-parser";
+import cors from 'cors'
+import { decode } from "punycode";
+//initializing server and db clients + server preconfigs
 const prisma = new PrismaClient();
 const app = express();
-
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+    credentials: true,
+    origin: "http://localhost:3000"
+}))
 
 const jwtSecret = "somethingCrazyAsHell"
 app.use(express.json())
@@ -74,26 +82,25 @@ app.post("/signin",async (req, res) => {
           return res.status(401).json({ error: 'Invalid password' });
         }
         
-        jwt.sign({email}, jwtSecret, (err: any, token: any) => {
-            if (err) {
-                console.error("Error generating JWT:", err)
-                return res.status(500).json({err: "Internal server error"})
-            }
-            res.cookie("userToken", token, {
-                sameSite: "strict"
-            })
-            console.log('user token created')
-            return res.status(200).json({token, success: true})
-        })
-
-        
-        
-
+        const token = jwt.sign({email}, jwtSecret)
+        console.log('user token created')
+        res.cookie('userToken', token)
+        res.status(200).json({success: true})
     } catch (error) {
         console.error('Error during sign-in:', error);
         res.status(500).json({ error: 'Internal server error' });
       }
     
+})
+
+app.get('/user', (req, res) =>{
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
+
+
+    res.json({
+        userEmail: decoded.email,
+    })
 })
 
 app.listen(3001, () => {

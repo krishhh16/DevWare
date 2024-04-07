@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -33,17 +33,20 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
   font-feature-settings: normal; /* 5 */
   font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
 }
 
 /*
@@ -110,8 +113,10 @@ strong {
 }
 
 /*
-1. Use the user's configured `mono` font family by default.
-2. Correct the odd `em` font sizing in all browsers.
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
 */
 
 code,
@@ -119,7 +124,9 @@ kbd,
 samp,
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-feature-settings: normal; /* 2 */
+  font-variation-settings: normal; /* 3 */
+  font-size: 1em; /* 4 */
 }
 
 /*
@@ -179,6 +186,7 @@ textarea {
   font-size: 100%; /* 1 */
   font-weight: inherit; /* 1 */
   line-height: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
   color: inherit; /* 1 */
   margin: 0; /* 2 */
   padding: 0; /* 3 */
@@ -199,9 +207,9 @@ select {
 */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
   -webkit-appearance: button; /* 1 */
   background-color: transparent; /* 2 */
   background-image: none; /* 2 */
@@ -448,6 +456,10 @@ body {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
 }
 
 ::backdrop{
@@ -498,6 +510,10 @@ body {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
 }
 .container{
   width: 100%;
@@ -901,7 +917,7 @@ input#checkboxLabel:checked ~ .box span{
   width: 100%;
 }
 .max-w-0{
-  max-width: 0rem;
+  max-width: 0px;
 }
 .max-w-\[18px\]{
   max-width: 18px;
@@ -1551,131 +1567,131 @@ input#checkboxLabel:checked ~ .box span{
   border-color: rgb(74 108 247 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:block){
+.dark\:block:is(.dark *){
   display: block;
 }
 
-:is(.dark .dark\:hidden){
+.dark\:hidden:is(.dark *){
   display: none;
 }
 
-:is(.dark .dark\:border-body-color\/20){
+.dark\:border-body-color\/20:is(.dark *){
   border-color: rgb(120 130 147 / 0.2);
 }
 
-:is(.dark .dark\:border-transparent){
+.dark\:border-transparent:is(.dark *){
   border-color: transparent;
 }
 
-:is(.dark .dark\:border-white){
+.dark\:border-white:is(.dark *){
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:border-white\/\[\.15\]){
+.dark\:border-white\/\[\.15\]:is(.dark *){
   border-color: rgb(255 255 255 / .15);
 }
 
-:is(.dark .dark\:border-opacity-10){
+.dark\:border-opacity-10:is(.dark *){
   --tw-border-opacity: 0.1;
 }
 
-:is(.dark .dark\:border-opacity-25){
+.dark\:border-opacity-25:is(.dark *){
   --tw-border-opacity: 0.25;
 }
 
-:is(.dark .dark\:bg-\[\#2C303B\]){
+.dark\:bg-\[\#2C303B\]:is(.dark *){
   --tw-bg-opacity: 1;
   background-color: rgb(44 48 59 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-bg-color-dark){
+.dark\:bg-bg-color-dark:is(.dark *){
   --tw-bg-opacity: 1;
   background-color: rgb(23 28 40 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-black){
+.dark\:bg-black:is(.dark *){
   --tw-bg-opacity: 1;
   background-color: rgb(18 23 35 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-dark){
+.dark\:bg-dark:is(.dark *){
   --tw-bg-opacity: 1;
   background-color: rgb(29 36 48 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-gray-dark){
+.dark\:bg-gray-dark:is(.dark *){
   --tw-bg-opacity: 1;
   background-color: rgb(30 35 46 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-white\/10){
+.dark\:bg-white\/10:is(.dark *){
   background-color: rgb(255 255 255 / 0.1);
 }
 
-:is(.dark .dark\:via-\[\#959CB183\]){
+.dark\:via-\[\#959CB183\]:is(.dark *){
   --tw-gradient-to: rgb(149 156 177 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #959CB183 var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
-:is(.dark .dark\:text-body-color-dark){
+.dark\:text-body-color-dark:is(.dark *){
   --tw-text-opacity: 1;
   color: rgb(149 156 177 / var(--tw-text-opacity));
 }
 
-:is(.dark .dark\:text-white){
+.dark\:text-white:is(.dark *){
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-:is(.dark .dark\:shadow-sticky-dark){
+.dark\:shadow-sticky-dark:is(.dark *){
   --tw-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.1);
   --tw-shadow-colored: inset 0 -1px 0 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-:is(.dark .dark\:shadow-submit-dark){
+.dark\:shadow-submit-dark:is(.dark *){
   --tw-shadow: 0px 5px 20px rgba(4, 10, 34, 0.1);
   --tw-shadow-colored: 0px 5px 20px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-:is(.dark .dark\:shadow-two){
+.dark\:shadow-two:is(.dark *){
   --tw-shadow: 0px 5px 10px rgba(6, 8, 15, 0.1);
   --tw-shadow-colored: 0px 5px 10px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-:is(.dark .dark\:drop-shadow-none){
+.dark\:drop-shadow-none:is(.dark *){
   --tw-drop-shadow: drop-shadow(0 0 #0000);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-:is(.dark .dark\:hover\:bg-primary:hover){
+.dark\:hover\:bg-primary:hover:is(.dark *){
   --tw-bg-opacity: 1;
   background-color: rgb(74 108 247 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:hover\:bg-white\/5:hover){
+.dark\:hover\:bg-white\/5:hover:is(.dark *){
   background-color: rgb(255 255 255 / 0.05);
 }
 
-:is(.dark .dark\:hover\:text-primary:hover){
+.dark\:hover\:text-primary:hover:is(.dark *){
   --tw-text-opacity: 1;
   color: rgb(74 108 247 / var(--tw-text-opacity));
 }
 
-:is(.dark .dark\:hover\:shadow-gray-dark:hover){
+.dark\:hover\:shadow-gray-dark:hover:is(.dark *){
   --tw-shadow-color: #1E232E;
   --tw-shadow: var(--tw-shadow-colored);
 }
 
-:is(.dark .dark\:focus\:border-primary:focus){
+.dark\:focus\:border-primary:focus:is(.dark *){
   --tw-border-opacity: 1;
   border-color: rgb(74 108 247 / var(--tw-border-opacity));
 }
 
-:is(.dark .dark\:focus\:shadow-none:focus){
+.dark\:focus\:shadow-none:focus:is(.dark *){
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
