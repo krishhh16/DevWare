@@ -11,6 +11,17 @@ import type { AgentStep } from "langchain/schema";
 import { ChatMessageBubble } from "@/components/Chat/ChatMessageBubble";
 import { IntermediateStep } from "./IntermediateStep";
 
+
+interface Message {
+  id: string;
+  tool_call_id?: string;
+  createdAt?: Date;
+  content: string;
+  ui?: string | JSX.Element | JSX.Element[] | null | undefined;
+  role: 'system' | 'user' | 'assistant' | 'function' | 'data' | 'tool';
+ 
+}
+
 export function ChatWindow(props: {
   endpoint: string,
   emptyStateComponent: ReactElement,
@@ -46,6 +57,20 @@ export function ChatWindow(props: {
         });
       }
     });
+// interface Message {
+//   id: string;
+//   tool_call_id?: string;
+//   createdAt?: Date;
+//   content: string;
+//   ui?: string | JSX.Element | JSX.Element[] | null | undefined;
+//   role: 'system' | 'user' | 'assistant' | 'function' | 'data' | 'tool';
+ 
+// }
+    messages[0] = {
+      id: 'something',
+      content: "What's your level of experience",
+      role: "assistant"
+    }
 
   async function sendMessage(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -99,30 +124,26 @@ export function ChatWindow(props: {
   }
 
   return (
-    <div className={`flex flex-col items-center p-4 md:p-8 rounded grow m-20 overflow-hidden ${(messages.length > 0 ? "border" : "")}`}>
-      <h2 className={`${messages.length > 0 ? "" : "hidden"} text-2xl`}>{emoji} {titleText}</h2>
-      {messages.length === 0 ? emptyStateComponent : ""}
+    <div className={`flex flex-col items-center p-4 md:p-8 rounded grow m-20 overflow-hidden `}>
+      <h2 className={`text-2xl`}>{emoji} {titleText}</h2>
+      { emptyStateComponent}
       <div
         className="flex flex-col-reverse w-full mb-4 overflow-auto transition-[flex-grow] ease-in-out"
         ref={messageContainerRef}
       >
-        {messages.length > 0 ? (
+        {
           [...messages]
             .reverse()
             .map((m, i) => {
               const sourceKey = (messages.length - 1 - i).toString();
               return (m.role === "system" ? <IntermediateStep key={m.id} message={m}></IntermediateStep> : <ChatMessageBubble key={m.id} message={m} aiEmoji={emoji} sources={sourcesForMessages[sourceKey]}></ChatMessageBubble>)
             })
-        ) : (
-          ""
-        )}
+          }
       </div>
 
-      {messages.length === 0}
-
       <form onSubmit={sendMessage} className="flex w-full flex-col">
-    
         <div className="flex w-full mt-4">
+          
           <input
             className="grow mr-8 p-4 rounded"
             value={input}

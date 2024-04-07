@@ -2,17 +2,31 @@ import { ChatWindow } from "@/components/Chat/ChatWindow";
 
 export default function Home() {
   const InfoCard = (
-    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden text-center m-10">
+    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden m-10">
       <h1 className="text-3xl md:text-4xl mb-4 ">
-        DevWare - For fast developers, who deny to fail 
+        DevWare - For persistent developers, who deny to fail 
+
       </h1>
       <ul>
         <li className="text-l">
-          🤝
+          👋 
           <span className="ml-2">
-            For a better experience please give detailed answers
+            Hey! Welcome to the onboarding process, step into the arena of your social growth
           </span>{"  "}
-          🤝
+           
+        </li>
+        <li className="text-l">
+          👐
+          <span className="ml-2">
+            The questions here are intended to personalize your content so more detailed answers ---{">"} better experience
+          </span>{"  "}  
+        </li>
+        <li className="text-l">
+          ⚒️
+          <span className="ml-2">
+            To start with the process you can ask <code></code>
+          </span>{"  "}
+           
         </li>
       </ul>
     </div>
