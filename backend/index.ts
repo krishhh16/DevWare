@@ -94,9 +94,9 @@ app.post("/signin",async (req, res) => {
 })
 
 app.get('/user', (req, res) =>{
-    const token = req.cookies.token;
+    const token = req.cookies.userToken;
     const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
-
+    console.log('hitted the server')
 
     res.json({
         userEmail: decoded.email,

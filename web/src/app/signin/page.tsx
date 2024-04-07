@@ -25,7 +25,9 @@ const SignupPage = () => {
       console.log(userData)
 
       try {
-      const response = await axios.post("http://localhost:3001/signin", userData)
+      const response = await axios.post("http://localhost:3001/signin", userData, {
+        withCredentials: true,
+      })
       console.log(response.data)
     
       if (!response.data.success) {
