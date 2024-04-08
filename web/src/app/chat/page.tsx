@@ -19,12 +19,12 @@ export default function Home() {
           👐
           <span className="ml-2">
             The questions here are intended to personalize your content so more detailed answers ---{">"} better experience
-          </span>{"  "}  
+          </span>{""}  
         </li>
         <li className="text-l">
           ⚒️
           <span className="ml-2">
-            To start with the process you can ask <code></code>
+            To kickstart the process you can tell about your experience level-Beginner, M
           </span>{"  "}
            
         </li>
