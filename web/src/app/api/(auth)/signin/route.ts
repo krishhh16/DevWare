@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         }
 
         if(!(existingUser.password == password)){
-            return NextResponse.json({success: false, msg: "Invalid Cred."})
+            return NextResponse.json({success: false, msg: "Invalid Creden."})
         }
 
         const token = jwt.sign({email}, jwtSecret);
