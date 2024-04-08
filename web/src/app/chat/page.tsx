@@ -16,17 +16,16 @@ export default function Home() {
            
         </li>
         <li className="text-l">
+          ⚒️
+          <span className="ml-2">
+             
+          </span>{"  "} 
+        </li>
+        <li className="text-l">
           👐
           <span className="ml-2">
             The questions here are intended to personalize your content so more detailed answers ---{">"} better experience
           </span>{""}  
-        </li>
-        <li className="text-l">
-          ⚒️
-          <span className="ml-2">
-            To kickstart the process you can tell about your experience level-Beginner, M
-          </span>{"  "}
-           
         </li>
       </ul>
     </div>

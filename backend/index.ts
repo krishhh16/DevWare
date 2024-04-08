@@ -3,7 +3,8 @@ import { PrismaClient } from "@prisma/client";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import cors from 'cors'
-import { decode } from "punycode";
+
+
 //initializing server and db clients + server preconfigs
 const prisma = new PrismaClient();
 const app = express();
