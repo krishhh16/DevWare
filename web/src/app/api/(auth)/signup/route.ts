@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
           },
         });
         console.log('User created');
-        return NextResponse.json({}, {status: 200})
+        return NextResponse.json({success: true}, {status: 200})
       } catch (error) {
         console.error('Error creating user:', error);
         return NextResponse.json({success: true}, {status: 200})

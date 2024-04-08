@@ -7,7 +7,7 @@ export default function () {
     const [userData, setUserData] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:3001/user', {
+        axios.get('http://localhost:3000/api/user', {
             withCredentials: true
         })
         .then(res => {
@@ -16,7 +16,7 @@ export default function () {
     }, [])
     return (
         <div>
-            Your Signed in email Id is {userData?.userEmail}
+            Your Signed in email Id is {userData?.userData}
         </div>
     )
 }

@@ -30,7 +30,7 @@ const SignupPage = () => {
         return alert("Please put the same password in confirm password field")
       }
       try {
-      const response = await axios.post("http://localhost:3001/signup", userData)
+      const response = await axios.post("http://localhost:3000/api/signup", userData)
       console.log(response.data)
     
       if (!response.data.success) {
