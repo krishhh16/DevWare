@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       });
       console.log(userExists);
       if (userExists) {
-        return NextResponse.json({}, {status: 200})
+        return NextResponse.json({success: false, msg: 'user Already exists'}, {status: 200})
       }
   
       try {
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({}, {status: 200})
       } catch (error) {
         console.error('Error creating user:', error);
-        return NextResponse.json({}, {status: 200})
+        return NextResponse.json({success: true}, {status: 200})
       }
     
   }
