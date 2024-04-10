@@ -11,14 +11,14 @@ export default function Home() {
         <li className="text-l">
           👋 
           <span className="ml-2">
-            Hey! Welcome to the onboarding process, step into the arena of your social growth
+            Hey! Welcome to the onboarding process, step into the arena of your social growth.
           </span>{"  "}
            
         </li>
         <li className="text-l">
-          ⚒️
+          
           <span className="ml-2">
-             
+            Our chatbot is your personal concierge, here to guide and customize your onboarding experience.
           </span>{"  "} 
         </li>
         <li className="text-l">

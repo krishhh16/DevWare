@@ -18,5 +18,20 @@ model User {
   username String?
   email String @unique
   password String
-  isFeedback Boolean
+  feedback Feedback[]
+  userInsights UserInsights[]
 }
+
+model Feedback {
+  email String @id
+  userRel User @relation(fields: [email], references: [email])
+  content String
+}
+
+model UserInsights{
+  email String @unique @id
+  userRel User @relation(fields: [email], references: [email])
+  content String
+}
+
+
