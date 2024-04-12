@@ -6,14 +6,22 @@ import ProfileImage from '../components/assets/profile.png'
 import Link, { LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCentralStore } from '../components/Store'
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { SetStateAction, useEffect, useState } from 'react'
+import axios, { AxiosResponse } from 'axios'
 
 
 function Sidebar() {
-    const [userData, setUserData] = useState()
     const pathname = usePathname()
-    
+    const [userData, setUser] = useState<SetStateAction<Promise<AxiosResponse<any, any>>>>()
+    useEffect(()=> {
+        something()
+    }, [])
+
+    async function something(){
+        const user = await axios.get("http://localhost:3000/api/user")
+        console.log(user)
+        setUser(user)
+    }
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden'>
@@ -82,8 +90,8 @@ function Sidebar() {
                                     className='rounded-full'
                                 />
                                 <div className=''>
-                                    <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
-                                    <p className='text-xs font-medium text-gray-500'>steve@apple.com</p>
+                                    <p className='text-sm font-semibold text-gray-800'>{userData?.data.userName}</p>
+                                    <p className='text-xs font-medium text-gray-500'>{userData?.data.email}</p>
                                 </div>
                             </div>
 

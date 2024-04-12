@@ -33,7 +33,7 @@ const SignupPage = () => {
       if (!response.data.success) {
         alert("Invalid user credentials")
       }else {
-        navigator.push("/dashboard")
+        navigator.push("/app/dashboard")
       }
       }
        catch (err) {

@@ -5,8 +5,19 @@ import { Add } from 'iconsax-react'
 import PageContent from '@/components/layout/PageContent'
 import ProfileImage from '@/components/assets/profile.png'
 import Image from 'next/image'
+import { SetStateAction, useEffect, useState } from 'react'
+import axios, { AxiosResponse } from 'axios'
 function Dashboard() {
+    const [userData, setUser] = useState<SetStateAction<Promise<AxiosResponse<any, any>>>>()
+    useEffect(()=> {
+        something()
+    }, [])
 
+    async function something(){
+        const user = await axios.get("http://localhost:3000/api/user")
+        console.log(user)
+        setUser(user)
+    }
     return (
         <div>
             <PageNavbar>
@@ -20,8 +31,8 @@ function Dashboard() {
                             className='rounded-full'
                         />
                         <div className=''>
-                            <p className='text-sm font-semibold text-red-800'>Steve Jobs</p>
-                            <p className='text-xs font-medium text-gray-500'>Welcome back</p>
+                            <p className='text-sm font-semibold text-red-800'>{userData?.data.userName}</p>
+                            <p className='text-xs font-medium text-gray-500'>{userData?.data.email}</p>
                         </div>
                     {/* </div> */}
                 </PageNavbarLeftContent>
