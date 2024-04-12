@@ -1,11 +1,23 @@
 import jwt, {JwtPayload} from 'jsonwebtoken'
 import { cookies } from "next/headers";
+import PrismaClient from "../../../db/index"
 import { NextRequest, NextResponse } from "next/server";
 const jwtSecret = 'something'
-export function GET(req: NextRequest){
+const prisma = new PrismaClient();
+export async function GET(req: NextRequest){
     const token = cookies().get('userToken')?.value;
 
+    try {
     const decoded = jwt.verify(token, jwtSecret) as JwtPayload;
 
-    return NextResponse.json({userData: decoded.email})
+    const userData = await prisma.user.findFirst({
+        where: {email: decoded.email}
+    })
+
+    console.log(userData)
+
+    return NextResponse.json({userName: userData.username, email: userData.email}
+        )} catch(err){
+            console.log(err)
+        }
 }

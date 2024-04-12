@@ -27,7 +27,6 @@ export async function POST(req: NextRequest) {
             username,
             email,
             password,
-            isFeedback: false,
           },
         });
         console.log('User created');

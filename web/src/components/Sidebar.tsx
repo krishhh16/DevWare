@@ -6,17 +6,14 @@ import ProfileImage from '../components/assets/profile.png'
 import Link, { LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCentralStore } from '../components/Store'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
 
 function Sidebar() {
-
+    const [userData, setUserData] = useState()
     const pathname = usePathname()
-    const { setIsSidebarOpen, isSidebarOpen } = useCentralStore()
-
-    // useEffect(() => {
-    //     if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen)
-    // }, [pathname])
+    
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden'>
@@ -27,8 +24,8 @@ function Sidebar() {
                         <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
                     </div>
                     <div>
-                        <h1 className='text-sm font-bold text-gray-800'>Githr</h1>
-                        <p className='text-xs text-gray-500 font-medium'>HR Management</p>
+                        <h1 className='text-sm font-bold text-gray-800'>DevWare</h1>
+                        <p className='text-xs text-gray-500 font-medium'>Be known for your craft</p>
                     </div>
                 </div>
 
@@ -46,38 +43,17 @@ function Sidebar() {
 
                         <Link href={'/app/teams'} className={`flex ${pathname === '/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Profile2User size={16} />
-                            Teams
+                            Profile
                         </Link>
 
                         <Link href={'/app/integrations'} className={`flex ${pathname === '/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
-                            Integrations
+                            Post History
                         </Link>
-
-                        <button disabled className={`flex ${pathname === '/app/calendar' ? 'text-primary' : ''} hover:px-8 disabled:opacity-60 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Calendar size={16} />
-                            Calendar
-                        </button>
-
-                        <button disabled className={`flex ${pathname === '/app/timeoff' ? 'text-primary' : ''} hover:px-8 disabled:opacity-60 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Timer1 size={16} />
-                            Time Off
-                        </button>
-
-                        <button disabled className={`flex ${pathname === '/app/projects' ? 'text-primary' : ''} hover:px-8 disabled:opacity-60 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Folder2 size={16} />
-                            Projects
-                        </button>
-
-                        <button disabled className={`flex ${pathname === '/app/benefits' ? 'text-primary' : ''} hover:px-8 disabled:opacity-60 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Star size={16} />
-                            Benefits
-                        </button>
-
-                        <button disabled className={`flex ${pathname === '/app/documents' ? 'text-primary' : ''} hover:px-8 disabled:opacity-60 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Document size={16} />
-                            Documents
-                        </button>
+                        <Link href={'/app/integrations'} className={`flex ${pathname === '/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                            <Setting4 size={16} />
+                            Add knowledge base
+                        </Link>
                     </div>
 
                     <div>

@@ -1,11 +1,18 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Sidebar from "@/components/Sidebar"
 import { useCentralStore } from "../../components/Store"
+import axios, { AxiosResponse } from "axios"
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
+    const [userData, setUser] = useState<Promise<AxiosResponse<any, any>>>()
+    useEffect(()=> {
+        const user = axios.post('http://localhost:3000/api/user')
+
+        setUser(user)
+    }, [])
 
     const { isSidebarOpen, toggleSidebar, setIsSidebarOpen } = useCentralStore()
 
