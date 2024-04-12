@@ -1,6 +1,8 @@
 {
+  "/api/chat/route": "static/webpack/app/api/chat/route.38d36aebc70f3388.hot-update.js",
   "/signin/page": "app/signin/page.js",
-  "/app/dashboard/page": "app/app/dashboard/page.js",
+  "/chat/page": "app/chat/page.js",
   "/app/teams/page": "app/app/teams/page.js",
+  "/app/dashboard/page": "app/app/dashboard/page.js",
   "/app/integrations/page": "app/app/integrations/page.js"
 }

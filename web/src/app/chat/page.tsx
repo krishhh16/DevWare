@@ -13,10 +13,10 @@ export default function Home() {
           <span className="ml-2">
             Hey! Welcome to the onboarding process, step into the arena of your social growth.
           </span>{"  "}
-           
+
         </li>
         <li className="text-l">
-          
+          👊
           <span className="ml-2">
             Our chatbot is your personal concierge, here to guide and customize your onboarding experience.
           </span>{"  "} 
@@ -24,8 +24,20 @@ export default function Home() {
         <li className="text-l">
           👐
           <span className="ml-2">
-            The questions here are intended to personalize your content so more detailed answers ---{">"} better experience
-          </span>{""}  
+             Interacting with our chatbot is as simple as having a conversation with your friend.This is an open dialogue to talk about your techincal skillset & experience along with the problems you face while building on content. 
+          </span>{"  "}
+        </li>
+        <li className="text-l">
+          🔒
+          <span className="ml-2">
+           Your privacy is our topmost priority. All the information you share with our chatbot is confidential and used solely to enhance your experience.
+          </span>{"  "}
+        </li>
+        <li className="text-l">
+          🌱
+          <span className="ml-2">
+           Ready to dive in? Just start with answering your techincal experience.Don't hesitate if you have none cause 'Everyone starts somewhere so do you'
+          </span>{"  "}
         </li>
       </ul>
     </div>
