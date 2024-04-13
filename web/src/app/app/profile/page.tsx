@@ -20,27 +20,39 @@ function Teams() {
     const [userData, setUser] = useState<SetStateAction<Promise<AxiosResponse<any, any>>>>()
     const [userChange, setUserChange] = useState(true)
     const [emailChange, setEmailChange] = useState(true)
+    const [passwordChange, setPasswordChange] = useState(true)
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
     async function updateUserData(which: UserEnum, data: String) {
-        const field: string = which == UserEnum.USERNAME ? 'username' : 'email';
+        setLoading(true)
+        const field: string = which === UserEnum.USERNAME ? 'username' : (which === UserEnum.EMAIL ? 'email' : 'password');
         if (which === UserEnum.EMAIL){
             try {
                 emailSchema.parse(email)
                 alert("success")
             }catch(err){
                 alert(err)
+                return
             }
         }
 
         console.log({data, which})
-        // const response = await axios.post("http://localhost:3000/api/updateUser" , {
-        //     data: {
-        //         field,
-        //         data
-        //     }
-        // })
+        const response = await axios.post("http://localhost:3000/api/updateUser" , {
+            data: {
+                field,
+                data
+            }
+        })
+
+        console.log(response.data)
+        if(!response.data.success){
+            alert('An error occured while updating your creds.')
+        }else {
+            alert("User data updated!")
+            
+        }
     }
 
     useEffect(()=> {
@@ -118,8 +130,17 @@ function Teams() {
                 <div className='text-sm md:pb-2 flex items-center justify-between'>
                     <div className='flex gap-2'>
                     <label className='text-blue-800' htmlFor="username">Password</label>
+                    <input
+                        value={password}
+                        type ="password" onChange={(e) => {
+                        setPasswordChange(false)
+                        setPassword(e.target.value)
+                        console.log(email)
+                        }}/>
                         <OutlineButton>
-                    <div>
+                    <div onClick={() => {
+                        updateUserData(UserEnum.PASSWORD, password)
+                    }}>
                           <h1 className='text-sm justify-center font-semibold text-red-800' >Update Password</h1>
                         
                     </div>

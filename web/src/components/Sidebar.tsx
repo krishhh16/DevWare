@@ -49,7 +49,7 @@ function Sidebar() {
                             Dashboard
                         </Link>
 
-                        <Link href={'/app/teams'} className={`flex ${pathname === '/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/app/profile'} className={`flex ${pathname === '/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Profile2User size={16} />
                             Profile
                         </Link>
