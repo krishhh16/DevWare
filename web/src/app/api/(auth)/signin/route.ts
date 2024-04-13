@@ -34,8 +34,9 @@ export async function POST(req: NextRequest) {
             httpOnly: true,
         })
 
-        return NextResponse.json({token, success: true})
+        return NextResponse.json({success: true})
       }catch (err){
+    
         return NextResponse.json({msg: err, success: false})
       }
         
