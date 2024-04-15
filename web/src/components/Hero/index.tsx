@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import { WavyBackground } from "../ui/wavy-background";
 const Hero = () => {
   return (
     <>
