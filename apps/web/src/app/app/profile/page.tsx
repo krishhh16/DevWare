@@ -8,6 +8,18 @@ import MembersTable from '@/components/teams/MembersTable'
 import axios, { AxiosResponse } from 'axios'
 import { SetStateAction, useEffect, useState } from 'react'
 import z from "zod"
+import { initializeApp } from "firebase/app";
+import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+
+
+const provider = new GithubAuthProvider();
+provider.addScope('repo')
+const firebaseConfig = {
+ //your config files
+};
+
+const app = initializeApp(firebaseConfig);
+const prov = new GithubAuthProvider();
 
 const emailSchema = z.coerce.string().email({message: "Invalid email address"});
 
@@ -25,6 +37,24 @@ function Teams() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+
+    const handleGitLogin = () => {
+        const auth = getAuth();
+      signInWithPopup(auth, provider)
+      .then(result => {
+        console.log(result.user)
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        console.log(token)
+    
+        const user = result.user;
+        const {displayName, photoURL, email} = result.user;
+    
+      })
+      .catch(err => {
+        console.log('something went wrong')
+      })
+      }
     async function updateUserData(which: UserEnum, data: String) {
         setLoading(true)
         const field: string = which === UserEnum.USERNAME ? 'username' : (which === UserEnum.EMAIL ? 'email' : 'password');
@@ -149,6 +179,22 @@ function Teams() {
                 </div>
 
                 <hr className='-mx-4' />
+                <div className='text-sm md:pb-2 flex items-center justify-between'>
+                    <div className='flex gap-2'>
+                        <OutlineButton>
+                        <button type="button" onClick={() => {handleGitLogin()}} className=" dark:shadow-submit-dark flex items-center justify-center rounded-sm text-base font-medium text-white duration-300 hover:text-black">
+                      Connect your Github
+                    </button>
+                        </OutlineButton>
+                        <OutlineButton>
+                        <button type="button" onClick={() => {handleGitLogin()}} className=" dark:shadow-submit-dark flex items-center justify-center rounded-sm text-base font-medium text-white duration-300 hover:text-black">
+                      Connect your Twitter
+                    </button>
+                        </OutlineButton>
+                    </div>
+
+                </div>
+                    <hr className='-mx-4' />
 
 
             </PageContent>

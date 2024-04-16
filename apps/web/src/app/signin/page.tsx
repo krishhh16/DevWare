@@ -8,15 +8,6 @@ import { useRouter } from "next/navigation";
 import { initializeApp } from "firebase/app";
 import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
-
-const provider = new GithubAuthProvider();
-provider.addScope('repo')
-const firebaseConfig = {
-  //your config files here
-};
-
-const app = initializeApp(firebaseConfig);
-const prov = new GithubAuthProvider();
 const userDataSchema = object({
   email: string().email(),
   password: string(),
@@ -24,23 +15,7 @@ const userDataSchema = object({
 const SignupPage = () => {
   const navigator = useRouter();
   
-  const handleGitLogin = () => {
-    const auth = getAuth();
-  signInWithPopup(auth, provider)
-  .then(result => {
-    console.log(result.user)
-    const credential = GithubAuthProvider.credentialFromResult(result);
-    const token = credential?.accessToken;
-    console.log(token)
-
-    const user = result.user;
-    const {displayName, photoURL, email} = result.user;
-
-  })
-  .catch(err => {
-    console.log('something went wrong')
-  })
-  }
+ 
 
   const [userData, setData] = useState(() => {
     // Initial userData object
@@ -136,11 +111,6 @@ const SignupPage = () => {
                   <div className="mb-6">
                     <button type='submit' className="shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
                       Sign in
-                    </button>
-                  </div>
-                  <div className="mb-6">
-                    <button type="button" onClick={() => {handleGitLogin()}} className="shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
-                      Sign in with Github
                     </button>
                   </div>
                 </form>
