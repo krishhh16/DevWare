@@ -1,26 +1,52 @@
+'use client'
 import Link from "next/link";
-import { WavyBackground } from "../ui/wavy-background";
+import { Canvas } from '@react-three/fiber'
+import Experience from "../ui/ThreeDExperience";
+import { useEffect, useState } from "react";
+import { OrbitControls } from "@react-three/drei";
 const Hero = () => {
+  const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
+  const [canvasWidth, setCanvasWidth] = useState(window.innerWidth);
+
+
+  // Update canvas height when the window is resized
+  useEffect(() => {
+      const handleResize = () => {
+          setCanvasHeight(window.innerHeight);
+          setCanvasWidth(window.innerWidth)
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      // Cleanup listener on unmount
+      return () => {
+          window.removeEventListener('resize', handleResize);
+      };
+  }, []);
   return (
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden bg-white pb-16 pt-[120px] dark:bg-gray-dark md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+        className="relative z-10 overflow-hidden bg-white  pt-[120px] dark:bg-gray-dark  md:pt-[150px]  xl:pt-[180px]  2xl:pt-[210px]"
       >
-        <div className="container">
-          <div className="-mx-4 flex flex-wrap">
+        <div className="container relative">
+          <Canvas camera={ { fov: 65, near: 0.1, far: 500, position: [ 0, -0.5, 8 ] } } style={{ height: "500px" ,width:canvasWidth}}>
+            <Experience />
+            {/* <OrbitControls /> */}
+          </Canvas>
+          <div className="-mx-4 flex flex-wrap absolute z-1 top-8">
             <div className="w-full px-4">
-              <div className="mx-auto max-w-[800px] text-center">
-                <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Build your developer presence, while you build your craft
+              <div className="mx-auto max-w-[500px] text-left">
+                <h1 className="mb-5 text-5xl font-bold leading-tight text-black dark:text-white sm:text-5xl sm:leading-tight md:text-5xl md:leading-tight text-left">
+                  Build your developer presence
                 </h1>
-                <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl text-left">
                   Networking is one of the key components in getting that cool remote offer,
                   You need to be seen by the right person at the right time to get the oppertunity
                   all that when you are already working on improving your main craft, 
                   We abstract away the need for you to focus on social media presence, so you can focus on what matters
                 </p>
-                <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+                <div className="flex flex-col items-center justify-left space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href="https://nextjstemplates.com/templates/saas-starter-startup"
                     className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
