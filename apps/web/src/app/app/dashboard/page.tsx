@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { SetStateAction, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 function Dashboard() {
-    const [userData, setUser] = useState<SetStateAction<Promise<AxiosResponse<any, any>>>>()
+    const [userData, setUser] = useState<AxiosResponse<any, any>>()
     useEffect(()=> {
         something()
     }, [])
@@ -16,7 +16,7 @@ function Dashboard() {
     async function something(){
         const user = await axios.get("http://localhost:3000/api/user")
         console.log(user)
-        setUser(user)
+        setUser(user.data)
     }
     return (
         <div>
@@ -31,8 +31,8 @@ function Dashboard() {
                             className='rounded-full'
                         />
                         <div className=''>
-                            <p className='text-sm font-semibold text-red-800'>{userData?.data.userName}</p>
-                            <p className='text-xs font-medium text-gray-500'>{userData?.data.email}</p>
+                            <p className='text-sm font-semibold text-red-800'>{userData?.userName}</p>
+                            <p className='text-xs font-medium text-gray-500'>{userData?.email}</p>
                         </div>
                     {/* </div> */}
                 </PageNavbarLeftContent>

@@ -1,11 +1,10 @@
 import jwt, {JwtPayload} from 'jsonwebtoken'
 import { cookies } from "next/headers";
-import PrismaClient from "../../../db/index"
+import prisma from '../../../../../../packages/db';
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod"
 
 const jwtSecret = 'something'
-const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest){
     const {data} = await req.json()

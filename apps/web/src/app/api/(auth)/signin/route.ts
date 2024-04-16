@@ -1,9 +1,9 @@
-import PrismaClient from "../../../../db/index"
+
+import prisma from "../../../../../../../packages/db";
 import { NextRequest, NextResponse } from "next/server";
 import {cookies} from "next/headers"
-import jwt, {JwtPayload} from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 const jwtSecret = 'something'
-const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
       const {  email, password }: {

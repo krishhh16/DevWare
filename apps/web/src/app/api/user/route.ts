@@ -1,9 +1,8 @@
 import jwt, {JwtPayload} from 'jsonwebtoken'
 import { cookies } from "next/headers";
-import PrismaClient from "../../../db/index"
+import prisma from '../../../../../../packages/db/index'
 import { NextRequest, NextResponse } from "next/server";
 const jwtSecret = 'something'
-const prisma = new PrismaClient();
 export async function GET(req: NextRequest){
     const token = cookies().get('userToken')?.value;
 
