@@ -7,6 +7,7 @@ import ProfileImage from '@/components/assets/profile.png'
 import Image from 'next/image'
 import { SetStateAction, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
+import Link from 'next/link'
 function Dashboard() {
     const [userData, setUser] = useState<AxiosResponse<any, any>>()
     useEffect(()=> {
@@ -41,7 +42,9 @@ function Dashboard() {
 
                     <PageNavbarPrimaryButton className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-white rounded-lg text-xs md:flex items-center justify-center'>
                         <Add size={16} />
+                        <Link href={"/app/post"}>
                         New Post
+                        </Link>
                     </PageNavbarPrimaryButton>
                 </PageNavbarRightContent>
             </PageNavbar>

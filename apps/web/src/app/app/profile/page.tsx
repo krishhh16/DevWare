@@ -15,7 +15,13 @@ import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 const provider = new GithubAuthProvider();
 provider.addScope('repo')
 const firebaseConfig = {
- //your config files
+  apiKey: "AIzaSyDz_x22m7vDU9RrE7KHXH_1rBINGK4XbTY",
+  authDomain: "devware-b01ed.firebaseapp.com",
+  projectId: "devware-b01ed",
+  storageBucket: "devware-b01ed.appspot.com",
+  messagingSenderId: "363045197813",
+  appId: "1:363045197813:web:4cc581110467a1132cb2bc",
+  measurementId: "G-K30WJG12BQ"
 };
 
 const app = initializeApp(firebaseConfig);
