@@ -3,17 +3,22 @@ import { Feature } from "@/types/feature";
 const SingleFeature = ({ feature }: { feature: Feature }) => {
   const { icon, title, paragraph } = feature;
   return (
-    <div className="w-full">
-      <div className="wow fadeInUp" data-wow-delay=".15s">
-        <div className="mb-10 flex h-[70px] w-[70px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
+    <div className="w-full flex justify-around">
+      <div className="wow fadeInUp w-[470px] p-2.5 rounded-2xl" data-wow-delay=".15s" style={{background:"linear-gradient(116deg, #35333D, #171320,#171320 "}}>
+        <div className="w-full flex items-center h-28">
+        <div className="mx-1 flex h-[64px] w-[71px] items-center justify-center rounded-full text-primary">
           {icon}
         </div>
-        <h3 className="mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
+        <div>
+        <h4 className="ml-4 mb-2 text-lg font-bold text-black dark:text-white sm:text-lg lg:text-lg xl:text-lg">
           {title}
-        </h3>
-        <p className="pr-[10px] text-base font-medium leading-relaxed text-body-color">
+        </h4>
+        <p className="ml-4 max-w-[400px] text-base font-medium leading-relaxed text-white opacity-50">
           {paragraph}
         </p>
+        </div>
+        </div>
+       
       </div>
     </div>
   );

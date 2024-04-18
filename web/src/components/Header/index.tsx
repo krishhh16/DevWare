@@ -43,7 +43,7 @@ const Header = () => {
       <header
         className={`header left-0 top-0 z-40 flex w-full items-center ${
           sticky
-            ? "dark:bg-gray-dark dark:shadow-sticky-dark fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition"
+            ? "dark:bg-gray-dark dark:shadow-sticky-dark fixed z-[9999] bg-white !bg-opacity-80 shadow-sticky backdrop-blur-sm transition py-2"
             : "absolute bg-transparent"
         }`}
       >
@@ -84,7 +84,7 @@ const Header = () => {
                 </Link>
                 <Link
                   href="/signup"
-                  className="ease-in-up shadow-btn hover:shadow-btn-hover hidden rounded-sm bg-primary px-8 py-3 text-base font-medium text-white transition duration-300 hover:bg-opacity-90 md:block md:px-9 lg:px-6 xl:px-9"
+                  className="rounded-md bg-gradient-to-r from-indigo-500 to-purple-500 px-7 py-3 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                 >
                   Sign Up
                 </Link>
