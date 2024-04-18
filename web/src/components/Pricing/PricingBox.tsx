@@ -8,8 +8,8 @@ const PricingBox = (props: {
   const { price, duration, packageName, subtitle, children } = props;
 
   return (
-    <div className="w-full">
-      <div className="relative z-10 rounded-sm bg-white px-8 py-10 shadow-three hover:shadow-one dark:bg-gray-dark dark:shadow-two dark:hover:shadow-gray-dark">
+    <div className="w-full shadow-lg shadow-indigo-900">
+      <div className="relative z-10 rounded-sm bg-white px-8 py-10  dark:bg-gray-dark dark:shadow-xl ">
         <div className="flex items-center justify-between">
           <h3 className="price mb-2 text-[32px] font-bold text-black dark:text-white">
             $<span className="amount">{price}</span>
@@ -23,12 +23,12 @@ const PricingBox = (props: {
         </div>
         <p className="mb-7 text-base text-body-color">{subtitle}</p>
         <div className="mb-8 border-b border-body-color border-opacity-10 pb-8 dark:border-white dark:border-opacity-10">
-          <button className="flex w-full items-center justify-center rounded-sm bg-primary p-3 text-base font-semibold text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+          <button className="flex w-full items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-500 rounded-md p-3">
             Start Free Trial
           </button>
         </div>
         <div>{children}</div>
-        <div className="absolute bottom-0 right-0 z-[-1]">
+        {/* <div className="absolute bottom-0 right-0 z-[-1]">
           <svg
             width="179"
             height="158"
@@ -71,7 +71,7 @@ const PricingBox = (props: {
               </linearGradient>
             </defs>
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
   );

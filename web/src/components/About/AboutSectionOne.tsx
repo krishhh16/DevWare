@@ -10,7 +10,7 @@ const checkIcon = (
 const AboutSectionOne = () => {
   const List = ({ text }) => (
     <p className="mb-5 flex items-center text-lg font-medium text-body-color">
-      <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-primary bg-opacity-10 text-primary">
+      <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-green-300 bg-opacity-20 text-green-400">
         {checkIcon}
       </span>
       {text}
@@ -18,15 +18,17 @@ const AboutSectionOne = () => {
   );
 
   return (
-    <section id="about" className="pt-16 md:pt-20 lg:pt-28">
+    <section id="about" className="pt-8 md:pt-10 lg:pt-14">
       <div className="container">
         <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 lg:w-1/2">
+          <div className="-mx-4 flex flex-wrap items-center grid grid-col-2 md:grid-cols-[1.1fr,1fr] lg:grid-cols-[1.1fr,1fr]">
+            <div>Image</div>
+            <div className="w-full px-4">
               <SectionTitle
                 title="Crafted for techies who just wanna focus on their craft, not their presence."
                 paragraph=""
                 mb="44px"
+                width="600px"
               />
 
               <div

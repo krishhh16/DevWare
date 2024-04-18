@@ -19,7 +19,7 @@ const OfferList = ({
 }) => {
   return (
     <div className="mb-3 flex items-center">
-      <span className="mr-3 flex h-[18px] w-full max-w-[18px] items-center justify-center rounded-full bg-primary bg-opacity-10 text-primary">
+      <span className={`${status === "active"? "bg-green-300 bg-opacity-20 text-green-400":"bg-red-700 bg-opacity-20 text-red-700"} mr-3 flex h-[18px] w-full max-w-[18px] items-center justify-center rounded-full `}>
         {status === "active" ? checkIcon : crossIcon}
       </span>
       <p className="m-0 text-base font-medium text-body-color">{text}</p>
