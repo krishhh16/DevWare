@@ -8,8 +8,8 @@ const PricingBox = (props: {
   const { price, duration, packageName, subtitle, children } = props;
 
   return (
-    <div className="w-full shadow-lg shadow-indigo-900">
-      <div className="relative z-10 rounded-sm bg-white px-8 py-10  dark:bg-gray-dark dark:shadow-xl ">
+    <div className="w-full  shadow-2xl shadow-zinc-700">
+      <div className="relative z-10 rounded-sm bg-white px-8 py-10 dark:bg-gray-dark ">
         <div className="flex items-center justify-between">
           <h3 className="price mb-2 text-[32px] font-bold text-black dark:text-white">
             $<span className="amount">{price}</span>

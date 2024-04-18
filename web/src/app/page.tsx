@@ -1,6 +1,6 @@
 import AboutSectionOne from "@/components/About/AboutSectionOne";
 import ScrollUp from "@/components/Common/ScrollUp";
-import Contact from "@/components/Contact";
+import Feedback from "@/components/Feedback";
 import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -21,7 +21,7 @@ export default function Home() {
       <Features />
       <AboutSectionOne />
       <Pricing />
-      <Contact />
+      <Feedback />
       <Footer />
     </>
   );
