@@ -10,6 +10,7 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@types/cors": "^2.8.17",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },
@@ -22,6 +23,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "firebase": "^10.11.0"
+    "firebase": "^10.11.0",
+    "pdf-parse": "^1.1.1"
   }
 }

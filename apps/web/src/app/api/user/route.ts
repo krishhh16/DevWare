@@ -17,5 +17,6 @@ export async function GET(req: NextRequest){
     return NextResponse.json({userName: userData.username, email: userData.email}
         )} catch(err){
             console.log(err)
+            return NextResponse.json({err})
         }
 }

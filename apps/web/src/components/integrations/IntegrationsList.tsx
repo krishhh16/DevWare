@@ -20,7 +20,6 @@ function IntegrationsList() {
                         </div>
                         <ToggleSwitch isActive />
                     </div>
-
                     <div>
                         <h1 className='text-gray-800 font-medium'>Microsoft Office 365</h1>
                         <p className='text-xs text-gray-500'>Seamless document management</p>

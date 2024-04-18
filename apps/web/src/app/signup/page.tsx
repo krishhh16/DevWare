@@ -5,6 +5,24 @@ import Link from "next/link";
 import { useState } from "react";
 import { object, string } from 'zod';
 import { useRouter } from "next/navigation";
+import { initializeApp } from "firebase/app";
+import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+
+
+const provider = new GithubAuthProvider();
+provider.addScope('repo')
+const firebaseConfig = {
+  apiKey: "AIzaSyDz_x22m7vDU9RrE7KHXH_1rBINGK4XbTY",
+  authDomain: "devware-b01ed.firebaseapp.com",
+  projectId: "devware-b01ed",
+  storageBucket: "devware-b01ed.appspot.com",
+  messagingSenderId: "363045197813",
+  appId: "1:363045197813:web:4cc581110467a1132cb2bc",
+  measurementId: "G-K30WJG12BQ"
+};
+
+const app = initializeApp(firebaseConfig);
+const prov = new GithubAuthProvider();
 
 const userDataSchema = object({
   username: string(),
@@ -23,6 +41,24 @@ const SignupPage = () => {
     });
   });
   const [confirmData, setConfirmData] = useState('')
+
+  const handleGitLogin = () => {
+    const auth = getAuth();
+  signInWithPopup(auth, provider)
+  .then(result => {
+    console.log(result.user)
+    const credential = GithubAuthProvider.credentialFromResult(result);
+    const token = credential?.accessToken;
+    console.log(token)
+
+    const user = result.user;
+    const {displayName, photoURL, email} = result.user;
+
+  })
+  .catch(err => {
+    console.log('something went wrong')
+  })
+  }
   const submitHandler = async (e) => {
       e.preventDefault()
       console.log(userData)
@@ -65,6 +101,11 @@ const SignupPage = () => {
                     Or, register with your email
                   </p>
                   <span className="hidden h-[1px] w-full max-w-[60px] bg-body-color/50 sm:block"></span>
+                </div>
+                <div className="mb-8 flex items-center justify-center">
+                <button type="button" onClick={() => {handleGitLogin()}} className=" dark:shadow-submit-dark flex items-center justify-center rounded-sm text-base font-medium text-white duration-300 hover:text-black">
+                      Connect your Github
+                    </button>
                 </div>
                 <form onSubmit={e => {submitHandler(e)}}>
                   <div className="mb-8">

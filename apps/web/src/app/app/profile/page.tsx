@@ -1,10 +1,8 @@
 "use client"
 
-import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarRightContent } from '@/components/layout/PageNavbar'
-import { Add, ExportCurve, Notification, Profile, SearchNormal1 } from 'iconsax-react'
+import PageNavbar, { PageNavbarLeftContent } from '@/components/layout/PageNavbar'
 import PageContent from '@/components/layout/PageContent'
-import { PrimaryButton, OutlineButton } from '@/components/ui/Button'
-import MembersTable from '@/components/teams/MembersTable'
+import { OutlineButton } from '@/components/ui/Button'
 import axios, { AxiosResponse } from 'axios'
 import { SetStateAction, useEffect, useState } from 'react'
 import z from "zod"
@@ -42,7 +40,6 @@ function Teams() {
     const [username, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [loading, setLoading] = useState(false)
 
     const handleGitLogin = () => {
         const auth = getAuth();
@@ -62,7 +59,6 @@ function Teams() {
       })
       }
     async function updateUserData(which: UserEnum, data: String) {
-        setLoading(true)
         const field: string = which === UserEnum.USERNAME ? 'username' : (which === UserEnum.EMAIL ? 'email' : 'password');
         if (which === UserEnum.EMAIL){
             try {
