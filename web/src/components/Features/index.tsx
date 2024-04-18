@@ -5,7 +5,8 @@ import featuresData from "./featuresData";
 const Features = () => {
   return (
     <>
-      <section id="features" className="py-16 md:py-20 lg:py-28">
+      <section id="features" className="pb-16 md:pb-20 lg:pb-28">
+        <div className="w-full h-16 md:h-20 lg:h-28" style={{ background: 'linear-gradient(#221f4a, #00040f)'}}></div>
         <div className="container">
           <SectionTitle
             title="Main Features"

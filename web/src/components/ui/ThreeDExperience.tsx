@@ -1,28 +1,29 @@
 'use client'
 import * as THREE from "three";
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { useGLTF, useHelper } from "@react-three/drei";
-import { MeshProps, useFrame } from "@react-three/fiber";
 
 export default function Experience(props :any) {
   const r = document.querySelector(':root');
   const rs = getComputedStyle(r!);
   const threeModelColorType = rs.getPropertyValue('--three-model-mode').trim().split('"')[1];
   const threeModelPlaceHolder = rs.getPropertyValue('--special-font').trim();
-  const { scene } = useGLTF("/model/Stage5.glb");
-  const lightRef = useRef();
-  useHelper(lightRef, THREE.HemisphereLightHelper, 2);;
-  const materialNew = {
-    "Material": props.threeModelColorType === "dark" ? new THREE.MeshStandardMaterial({color: new THREE.Color('#d3deea')}) :  new THREE.MeshStandardMaterial({color: new THREE.Color('#484b6a')}),
-  }
-  // const light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-// scene.add( light );
+  const { scene } = useGLTF("/model/StageDark.glb");
+  const lightRef = useRef()
+  
+  useEffect(()=>{
+    scene.children.forEach((child)=>  {child.receiveShadow = true , child.castShadow=true})
+  },[scene])
   return (
     <>
-    <hemisphereLight  ref={lightRef} skyColor={0xffffbb} groundColor="white"  position={ [0, 5, 0] } intensity={ 1.0 } />
-    {/* <directionalLight castShadow position={ [ 0, 2, -3 ] } intensity={ 1.0 } rotation={[0,Math.PI/2,0]} /> */}
-    {/* <directionalLight castShadow position={ [ 0, 2, 0 ] } intensity={ 1.0 } /> */}
-    {/* <ambientLight color="rgb(255, 192, 203)" intensity={ 13.5 } /> */}
+    <directionalLight   castShadow position={ [-10, 10, -1] } intensity={ 4.0 } rotation={[0,Math.PI/2,0]} shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
+                shadow-bias={-0.001} />
+    <directionalLight   castShadow position={ [20, 10, 1] } intensity={ 4.0 } rotation={[0,-Math.PI/2,0]} shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
+                shadow-bias={-0.001}/>
+    <pointLight   intensity={100.0} position={ [6, 2.5, -3.5] } color={'#FFD700'}/>   
+    <pointLight  ref={lightRef} intensity={100.0} position={ [-5.9, 2.0, -3.1] } color={'#FFD700'}/>
 
     <Suspense
       fallback={
@@ -32,7 +33,9 @@ export default function Experience(props :any) {
         </mesh>
       }
     >
-      <group {...props} dispose={null} position={[0, -1.3, 0]} scale={[0.3,0.28,0.28]} rotation={[0,Math.PI + (Math.PI/2),0]}><primitive object={scene} /></group>
+      {scene.children && <group {...props} dispose={null} position={[0, -1.3, 0]} scale={[0.3,0.28,0.28]} rotation={[0,Math.PI + (Math.PI/2)+0.02,0]}>
+        <primitive object={scene} />
+        </group>}
     </Suspense>
     </>
   );
