@@ -1,6 +1,32 @@
-import NewsLatterBox from "./NewsLatterBox";
+'use client'
 
+import axios from "axios";
+import { useState } from "react";
+import z from 'zod'
+
+const emailSchema = z.string().email()
 const Contact = () => {
+
+  const [email, setEmail] = useState('');
+  const [feedback, setFeedback] = useState('')
+
+  const onSubmit = async () => {
+    try {
+      emailSchema.parse(email);
+      const response = await axios.post('http://localhost:3000/api/feedback', {
+        email,
+        feedback
+      })
+
+      if (!response.data.success){
+        alert('Failed to submit feedback');
+      }else{
+        alert('Feedback submitted successfully')
+      }
+    }catch(err){
+      alert(err.message)
+    }
+  }
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -45,6 +71,8 @@ const Contact = () => {
                       <input
                         type="email"
                         placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => {setEmail(e.target.value)}}
                         className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       />
                     </div>
@@ -59,14 +87,16 @@ const Contact = () => {
                       </label>
                       <textarea
                         name="message"
+                        value={feedback}
                         rows={5}
+                        onChange={(e) => {setFeedback(e.target.value)}}
                         placeholder="Enter your Message"
                         className="border-stroke w-full resize-none rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       ></textarea>
                     </div>
                   </div>
                   <div className="w-full px-4">
-                    <button className="rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                    <button onClick={() => {onSubmit()}} className="rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
                       Submit Feedback
                     </button>
                   </div>

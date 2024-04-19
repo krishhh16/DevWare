@@ -29,20 +29,21 @@ const SignupPage = () => {
     const auth = getAuth();
   signInWithPopup(auth, provider)
   .then(async (result) => {
-    console.log(result.user.reloadUserInfo)
+    console.log(result)
     const credential = GithubAuthProvider.credentialFromResult(result);
+    const token = credential?.accessToken;
+    console.log(token)
     const {displayName, email, screenName } = result.user.reloadUserInfo;
-   
+      
     const userData = {
       username: screenName,
       email,
       password: `${screenName}-${email}`,
-      display: displayName
-    }
+      display: displayName,
+      accessToken: token,
+    };
     try {
-      console.log(userData)
-      const response = await axios.post("http://localhost:3000/api/signup", userData)
-      console.log(response.data)
+      const response = await axios.post("http://localhost:3000/api/signup", userData);
     
       if (!response.data.success) {
         alert("User already exists with the following credentials")
