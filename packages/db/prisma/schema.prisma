@@ -19,10 +19,17 @@ model User {
   email String @unique
   password String
   feedback Feedback[]
+  ghData GHData[]
   userInsights UserInsights[]
 }
 
 model Feedback {
+  email String @id
+  userRel User @relation(fields: [email], references: [email])
+  content String
+}
+    
+model GHData {
   email String @id
   userRel User @relation(fields: [email], references: [email])
   content String

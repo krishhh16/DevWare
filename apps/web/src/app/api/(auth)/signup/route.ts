@@ -1,12 +1,14 @@
+import axios from "axios";
 import prisma from "../../../../../../../packages/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
      
-      const { username, email, password }: {
+      const { username, email, password, displayName }: {
         username: string;
         email: string;
-        password: string
+        displayName: string;
+        password: string;
       } = await req.json();
   
       console.log(username, email, password);
@@ -19,7 +21,6 @@ export async function POST(req: NextRequest) {
       if (userExists) {
         return NextResponse.json({success: false, msg: 'user Already exists'}, {status: 200})
       }
-  
       try {
         await prisma.user.create({
           data: {
@@ -28,6 +29,11 @@ export async function POST(req: NextRequest) {
             password,
           },
         });
+
+        const response = await axios.get(`https://api.github.com/users/${username}`);
+
+
+
         console.log('User created');
         return NextResponse.json({success: true}, {status: 200})
       } catch (error) {
