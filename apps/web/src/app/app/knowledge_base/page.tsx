@@ -9,7 +9,19 @@ import { useState } from 'react';
 function Integrations() {
     const [file, setFile] = useState('');
     const [text, setText] = useState('');
+    const [post, setPost] = useState('') 
 
+    const onPost = async () => {
+        const response = await axios.post('http://localhost:3000/api/pref-post', {
+            post 
+        })
+
+        if (!response.data.success){
+            alert('Unable to upload your posts')
+        }else {
+            alert('Post Uploaded')
+        }
+    }
     const submitPdf = async (e) => {
         e.preventDefault()
         const formData= new FormData();
@@ -43,10 +55,20 @@ function Integrations() {
 
             <PageContent>
                <form onSubmit={submitPdf}>
-                <h4>Upload shit</h4>
-                <input onChange={(e)=> {setFile(e.target.files[0])} } type='file' className='form-control' accept='application/pdf'/>
-                <button type='submit'>Submit</button>
-                <h2>{text}</h2>
+                <div>
+                    <h3>Upload Your resume</h3>
+                    <input onChange={(e)=> {setFile(e.target.files[0])} } type='file' className='form-control' accept='application/pdf'/>
+                    <button type='submit'>Submit</button>
+                    <h2>{text}</h2>
+                </div>
+                <div>
+                    <h3>Post the posts that you like</h3>
+                    <textarea onChange={(e) => {
+                        setPost(e.target.value)
+                        }} value={post}>
+                    </textarea>
+                    <button onClick={() => {onPost()}} ></button>
+                </div>
                </form>
 
             </PageContent>
