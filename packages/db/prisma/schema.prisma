@@ -28,6 +28,11 @@ model Feedback {
   userRel User @relation(fields: [email], references: [email])
   content String
 }
+
+model Post {
+  email String @id
+  post String
+}
     
 model GHData {
   email String @id

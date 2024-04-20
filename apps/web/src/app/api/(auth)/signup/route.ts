@@ -12,18 +12,16 @@ export async function POST(req: NextRequest) {
         password: string;
         accessToken: string
       } = await req.json();
-      console.log(accessToken)
+     
       const octokit = new Octokit({ 
         auth: accessToken
       });
-
-      console.log(username, email, password);
       const userExists = await prisma.user.findFirst({
         where: {
           email,
         },
       });
-      console.log(userExists);
+     
       const response = await octokit.request(`GET /users/{username}/repos`,{
         username
       })
@@ -31,22 +29,47 @@ export async function POST(req: NextRequest) {
 
 
       let arr = [];
-      console.log(response.data)
-      const repos = response.data.map(async (i) =>{
-        if(!i.fork){
-          const response = await octokit.request('http://api.github.com/repos/{username}/{repo}/languages', {
+      await Promise.all(response.data.map(async (i) =>{
+        if(!i.fork){``
+          const res = await octokit.request('http://api.github.com/repos/{username}/{repo}/languages', {
             username,
             repo: i.name,
           })
-          console.log("response: ",response.data);
-          if(!(Object.keys(response.data).length === 0)){
-            arr.push(response.data);
+          
+          if(!(Object.keys(res.data).length === 0)){
+            arr.push(res.data);
           }
         }
-        console.log('current array:', arr);
-        })
-
+      }))
       
+      let str = '';
+      let random = arr.map(item =>{
+          return Object.keys(item)
+      });
+      let final = random.map(item =>{
+          return item.join(' ')
+      });
+      
+      final.filter(item => {
+           const newEle = item.split(' ');
+            newEle.map(e =>{
+             let pattern = new RegExp(e);
+             let found = pattern.test(str);
+             if(!found){
+              str+=' '+e;
+             }
+           })
+      });
+      
+            
+      await prisma.gHData.create({
+        data : {
+          email,
+          content: str
+        }
+      });
+      
+
       if (userExists) {
         return NextResponse.json({success: false, msg: 'user Already exists'}, {status: 200})
       }
@@ -58,10 +81,7 @@ export async function POST(req: NextRequest) {
             password,
           },
         });
-
-
-
-
+        
         console.log('User created');
         return NextResponse.json({success: true}, {status: 200})
       } catch (error) {
