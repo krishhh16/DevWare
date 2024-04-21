@@ -2,6 +2,10 @@ import axios from "axios";
 import prisma from "../../../../../../../packages/db";
 import { NextRequest, NextResponse } from "next/server";
 import {Octokit} from 'octokit'
+import jwt from "jsonwebtoken"
+const jwtSecret = 'something'
+import {cookies} from "next/headers"
+
 
 export async function POST(req: NextRequest) {
      
@@ -28,7 +32,7 @@ export async function POST(req: NextRequest) {
       
       let arr = [];
       await Promise.all(response.data.map(async (i) =>{
-        if(!i.fork){``
+        if(!i.fork){
           const res = await octokit.request('http://api.github.com/repos/{username}/{repo}/languages', {
             username,
             repo: i.name,
@@ -78,8 +82,12 @@ export async function POST(req: NextRequest) {
             password,
           },
         });
-        
-        return NextResponse.json({success: true}, {status: 200})
+        const token = jwt.sign({email}, jwtSecret);
+        cookies().set('userToken', token, {
+          httpOnly: true,
+      });
+
+      return NextResponse.json({success: true}, {status: 200})
       } catch (error) {
         console.error('Error creating user:', error);
         return NextResponse.json({success: true}, {status: 200})

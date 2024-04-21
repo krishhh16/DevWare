@@ -13,7 +13,7 @@ export async function POST(req : NextRequest) {
         const userData = await prisma.post.create({
             data: {
                 email: decoded.email,
-                post: 
+                post
             }
         })
     
