@@ -26,8 +26,6 @@ export async function POST(req: NextRequest) {
         username
       })
       
-
-
       let arr = [];
       await Promise.all(response.data.map(async (i) =>{
         if(!i.fork){``
@@ -68,8 +66,7 @@ export async function POST(req: NextRequest) {
           content: str
         }
       });
-      
-
+     
       if (userExists) {
         return NextResponse.json({success: false, msg: 'user Already exists'}, {status: 200})
       }
@@ -82,7 +79,6 @@ export async function POST(req: NextRequest) {
           },
         });
         
-        console.log('User created');
         return NextResponse.json({success: true}, {status: 200})
       } catch (error) {
         console.error('Error creating user:', error);
