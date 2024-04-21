@@ -14,9 +14,9 @@ export default function onBoard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userChoice);
+   const userContent = JSON.stringify(userChoice);
     try{
-      const response = await axios.post("http://localhost:3000/onboardmcqs", userChoice);
+      const response = await axios.post("http://localhost:3000/onboardmcqs", userContent);
       console.log(response);
       if(!response.data.success){
         alert("Onboard mcqs submission failed!")
