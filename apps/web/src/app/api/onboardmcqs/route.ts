@@ -18,7 +18,7 @@ export async function POST(req:NextRequest){
             content: userContent
         }
       })
-      
+      return NextResponse.json({success: true, msg: "mcqs stored"});
     }catch(err){
         console.log(err)
         return NextResponse.json({success: false})
