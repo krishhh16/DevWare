@@ -2,8 +2,11 @@
 import './onboard.css'
 import { useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function onBoard() {
+  const navigator = useRouter();
+  
   const [userChoice, setChoice] = useState({});
   const updateChoice = (key, value) => {
     setChoice(prevState => ({
@@ -19,7 +22,9 @@ export default function onBoard() {
       const response = await axios.post("http://localhost:3000/onboardmcqs", userContent);
       console.log(response);
       if(!response.data.success){
-        alert("Onboard mcqs submission failed!")
+        alert("Onboard mcqs submission failed!");
+      } else{
+        navigator.push('/chat');
       }
     }catch(err){
       console.log(err);
