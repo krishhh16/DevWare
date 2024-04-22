@@ -5,10 +5,10 @@ import cors from 'cors'
 const app = express();
 const fs = require('fs');
 app.use(express.json());
+
 function extractTextFromPDF(pdfPath: any) {
   return new Promise((resolve, reject) => {
       // Read PDF file
-
       const pdfBuffer = fs.readFileSync(pdfPath);
 
       // Parse PDF

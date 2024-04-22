@@ -47,7 +47,7 @@ const SignupPage = () => {
       if (!response.data.success) {
         alert("User already exists with the following credentials")
       }else {
-        navigator.push("/signin")
+        navigator.push("/onboardmcqs")
       }
     }catch(err) {
       console.log(err)

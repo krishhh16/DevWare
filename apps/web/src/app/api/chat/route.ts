@@ -30,7 +30,7 @@ export const runtime = "edge";
 
 const formatMessage = (message: VercelChatMessage) => {
   return `${message.role}: ${message.content}`;
-};
+};  
 
 const TEMPLATE = `You have to onboard new users on a social-media content creation chatbot, they are gonna have techincal background try to get their problems with regards to content-creation & growth on social media.
 
@@ -85,8 +85,7 @@ export async function POST(req: NextRequest) {
       chat_history: formattedPreviousMessages.join("\n"),
       input: currentMessageContent,
     });
-    console.log(formattedPreviousMessages)
-
+    
     return new StreamingTextResponse(stream);
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
