@@ -2,10 +2,8 @@
 import './onboard.css'
 import { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
 export default function onBoard() {
-  const navigator = useRouter();
   
   const [userChoice, setChoice] = useState({});
   const updateChoice = (key, value) => {
@@ -19,12 +17,12 @@ export default function onBoard() {
     e.preventDefault();
    const userContent = JSON.stringify(userChoice);
     try{
-      const response = await axios.post("http://localhost:3000/onboardmcqs", userContent);
+      const response = await axios.post("http://localhost:3000/api/onboardmcqs", {userContent});
       console.log(response);
       if(!response.data.success){
         alert("Onboard mcqs submission failed!");
       } else{
-        navigator.push('/chat');
+        window.location.href = 'http://localhost:3000/chat'
       }
     }catch(err){
       console.log(err);
@@ -94,7 +92,7 @@ export default function onBoard() {
         <div className="grid" style={{ color: 'black' }}>
           <form  onSubmit={(e) => handleSubmit(e)} >
             {content}
-            <button type='submit'className='h-8 w-8 gap-1 md:w-auto border border-black py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center'>
+            <button type='submit' className='h-8 w-8 gap-1 md:w-auto border border-black py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center'>
               Submit
             </button>
           </form>

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { initializeApp } from "firebase/app";
 import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
-
 const provider = new GithubAuthProvider();
 provider.addScope('repo')
 const firebaseConfig = {
@@ -47,7 +46,7 @@ const SignupPage = () => {
       if (!response.data.success) {
         alert("User already exists with the following credentials")
       }else {
-        navigator.push("/onboardmcqs")
+        navigator.push("/onboard")
       }
     }catch(err) {
       console.log(err)

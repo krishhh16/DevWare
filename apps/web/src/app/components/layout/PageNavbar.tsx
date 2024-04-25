@@ -2,9 +2,6 @@ import React from 'react'
 import { SidebarLeft } from 'iconsax-react'
 import { useCentralStore } from '../Store'
 
-
-
-
 const PageNavbarLeftContent = React.forwardRef<
     HTMLDivElement,
     React.ComponentPropsWithoutRef<'div'>
@@ -16,7 +13,6 @@ const PageNavbarLeftContent = React.forwardRef<
 );
 
 PageNavbarLeftContent.displayName = 'PageNavbarLeftContent'
-
 
 const PageNavbarRightContent = React.forwardRef<
     HTMLDivElement,
@@ -30,7 +26,6 @@ const PageNavbarRightContent = React.forwardRef<
 
 PageNavbarRightContent.displayName = 'PageNavbarRightContent'
 
-
 const PageNavbarIconButton = React.forwardRef<
     HTMLButtonElement,
     React.ComponentPropsWithoutRef<'button'>>
@@ -38,10 +33,11 @@ const PageNavbarIconButton = React.forwardRef<
         <button
             ref={ref}
             className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg'
-            {...props} />
+            {...props} 
+        />
     )
 
-PageNavbarIconButton.displayName = 'PageNavbarIconButton'
+PageNavbarIconButton.displayName = 'PageNavbarIconButton';
 
 const PageNavbarPrimaryButton = React.forwardRef<
     HTMLButtonElement,
@@ -53,8 +49,8 @@ const PageNavbarPrimaryButton = React.forwardRef<
             {...props}
         />
     )
-PageNavbarPrimaryButton.displayName = 'PageNavbarPrimaryButton'
 
+PageNavbarPrimaryButton.displayName = 'PageNavbarPrimaryButton'
 
 function PageNavbar({ children }: { children: React.ReactNode }) {
 

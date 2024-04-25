@@ -1,8 +1,8 @@
 "use client"
 
-import PageNavbar, { PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '@/components/layout/PageNavbar'
+import PageNavbar, { PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '@/app/components/layout/PageNavbar'
 import { Add } from 'iconsax-react'
-import PageContent from '@/components/layout/PageContent';
+import PageContent from '@/app/components/layout/PageContent';
 import axios from 'axios';
 import { useState } from 'react';
 

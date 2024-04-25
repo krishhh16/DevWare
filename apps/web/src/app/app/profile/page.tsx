@@ -1,8 +1,8 @@
 "use client"
 
-import PageNavbar, { PageNavbarLeftContent } from '@/components/layout/PageNavbar'
-import PageContent from '@/components/layout/PageContent'
-import { OutlineButton } from '@/components/ui/Button'
+import PageNavbar, { PageNavbarLeftContent } from '@/app/components/layout/PageNavbar'
+import PageContent from '@/app/components/layout/PageContent'
+import { OutlineButton } from '@/app/components/ui/Button'
 import axios, { AxiosResponse } from 'axios'
 import { SetStateAction, useEffect, useState } from 'react'
 import z from "zod"
