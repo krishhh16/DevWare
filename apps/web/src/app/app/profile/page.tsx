@@ -180,23 +180,6 @@ function Teams() {
                     </div>
                 </div>
 
-                <hr className='-mx-4' />
-                <div className='text-sm md:pb-2 flex items-center justify-between'>
-                    <div className='flex gap-2'>
-                        <OutlineButton>
-                        <button type="button" onClick={() => {handleGitLogin()}} className=" dark:shadow-submit-dark flex items-center justify-center rounded-sm text-base font-medium text-white duration-300 hover:text-black">
-                      Connect your Github
-                    </button>
-                        </OutlineButton>
-                        <OutlineButton>
-                        <button type="button" onClick={() => {handleGitLogin()}} className=" dark:shadow-submit-dark flex items-center justify-center rounded-sm text-base font-medium text-white duration-300 hover:text-black">
-                      Connect your Twitter
-                    </button>
-                        </OutlineButton>
-                    </div>
-
-                </div>
-                    <hr className='-mx-4' />
 
 
             </PageContent>

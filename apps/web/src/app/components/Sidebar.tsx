@@ -58,7 +58,7 @@ function Sidebar() {
                             <Setting4 size={16} />
                             Post History
                         </Link>
-                        <Link href={'/app/integrations'} className={`flex ${pathname === '/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/app/knowledge_base'} className={`flex ${pathname === '/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             Add knowledge base
                         </Link>
