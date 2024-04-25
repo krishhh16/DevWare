@@ -1,10 +1,10 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
-import ScrollUp from "@/components/Common/ScrollUp";
-import Contact from "@/components/Contact";
-import Features from "@/components/Features";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
+import AboutSectionOne from "@/app/components/About/AboutSectionOne";
+import ScrollUp from "@/app/components/Common/ScrollUp";
+import Contact from "@/app/components/Contact";
+import Features from "@/app/components/Features";
+import Header from "@/app/components/Header";
+import Hero from "@/app/components/Hero";
+import Pricing from "@/app/components/Pricing";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

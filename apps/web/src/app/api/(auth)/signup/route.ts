@@ -3,12 +3,11 @@ import prisma from "../../../../../../../packages/db";
 import { NextRequest, NextResponse } from "next/server";
 import {Octokit} from 'octokit'
 import jwt from "jsonwebtoken"
-const jwtSecret = 'something'
 import {cookies} from "next/headers"
 
+const jwtSecret = 'something'
 
 export async function POST(req: NextRequest) {
-     
       const { username, email, password, displayName, accessToken }: {
         username: string;
         email: string;
@@ -25,10 +24,7 @@ export async function POST(req: NextRequest) {
           email,
         },
       });
-     
-      const response = await octokit.request(`GET /users/{username}/repos`,{
-        username
-      })
+      const response = await octokit.request(`GET /users/{username}/repos`,{username})
       
       let arr = [];
       await Promise.all(response.data.map(async (i) =>{

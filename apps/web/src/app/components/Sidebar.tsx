@@ -5,7 +5,7 @@ import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone, Profile2
 import ProfileImage from '../components/assets/profile.png'
 import Link, { LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useCentralStore } from '../components/Store'
+import { useCentralStore } from './Store'
 import React, { SetStateAction, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 
@@ -20,7 +20,7 @@ function Sidebar() {
     async function something(){
         const user = await axios.get("http://localhost:3000/api/user")
         console.log(user)
-        setUser(user)
+        setUser(user.data)
     }
 
     return (
@@ -90,8 +90,8 @@ function Sidebar() {
                                     className='rounded-full'
                                 />
                                 <div className=''>
-                                    <p className='text-sm font-semibold text-gray-800'>{userData?.data.userName}</p>
-                                    <p className='text-xs font-medium text-gray-500'>{userData?.data.email}</p>
+                                    <p className='text-sm font-semibold text-gray-800'>{userData?.userName}</p>
+                                    <p className='text-xs font-medium text-gray-500'>{userData?.email}</p>
                                 </div>
                             </div>
 

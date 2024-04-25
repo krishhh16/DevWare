@@ -31,17 +31,17 @@ model Post {
 }
     
 model GHData {
-  email String @id
+  email String @unique @id
   content String
 }
 
 model UserInsights{
-  email String @unique @id
+  email String @id
   content String
 }
 
 model UserOnboard {
-  email String @unique @id
+  email String @id
   content String
 }
 

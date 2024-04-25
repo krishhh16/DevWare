@@ -1,4 +1,4 @@
-import { ChatWindow } from "@/components/Chat/ChatWindow";
+import { ChatWindow } from "@/app/components/Chat/ChatWindow";
 
 export default function Home() {
   const InfoCard = (

@@ -1,8 +1,8 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import ScrollToTop from "@/components/ScrollToTop";
+import Footer from "@/app/components/Footer";
+import Header from "@/app/components/Header";
+import ScrollToTop from "@/app/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
 

@@ -2,14 +2,13 @@
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/router';
 import { useChat } from "ai/react";
 import { useRef, useState, ReactElement } from "react";
 import type { FormEvent } from "react";
 import type { AgentStep } from "langchain/schema";
 import axios from 'axios';
 
-import { ChatMessageBubble } from "@/components/Chat/ChatMessageBubble";
+import { ChatMessageBubble } from "@/app/components/Chat/ChatMessageBubble";
 import { IntermediateStep } from "./IntermediateStep";
 
 
@@ -30,7 +29,6 @@ export function ChatWindow(props: {
   emoji?: string;
   showIntermediateStepsToggle?: boolean
 }) {
-  const navigator = useRouter();
   const messageContainerRef = useRef<HTMLDivElement | null>(null);
 
   const { endpoint, emptyStateComponent, placeholder, titleText = "An LLM",  showIntermediateStepsToggle, emoji } = props;
@@ -131,7 +129,7 @@ console.log(messages);
     if (!response.data.success) {
       alert("Responses failed to submit")
     } else {
-     navigator.push('/dashboard');
+     window.location.href = "http://localhost:300/app/dashboard"
     }
   }
 

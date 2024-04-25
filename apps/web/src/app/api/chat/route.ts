@@ -26,8 +26,6 @@ export const runtime = "edge";
 // Prob-10: Lack of Structure in Content Creation
 // Prob-11: Crafting Effective Cold Outreach Messages
 
-
-
 const formatMessage = (message: VercelChatMessage) => {
   return `${message.role}: ${message.content}`;
 };  
@@ -78,7 +76,6 @@ export async function POST(req: NextRequest) {
     });
 
     const outputParser = new HttpResponseOutputParser();
-
     const chain = prompt.pipe(model).pipe(outputParser);
 
     const stream = await chain.stream({

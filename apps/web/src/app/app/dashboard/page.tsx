@@ -1,9 +1,9 @@
 "use client"
 
-import PageNavbar, {  PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '@/components/layout/PageNavbar'
+import PageNavbar, {  PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '@/app/components/layout/PageNavbar'
 import { Add } from 'iconsax-react'
-import PageContent from '@/components/layout/PageContent'
-import ProfileImage from '@/components/assets/profile.png'
+import PageContent from '@/app/components/layout/PageContent'
+import ProfileImage from '../../components/assets/profile.png'
 import Image from 'next/image'
 import { SetStateAction, useEffect, useState } from 'react'
 import handleTwitter from "@/utils/handleTwitter";
@@ -31,7 +31,7 @@ function Dashboard() {
                             height={40}
                             className='rounded-full'
                         />
-                        <div className=''>
+                        <div>
                             <p className='text-sm font-semibold text-red-800'>{userData?.userName}</p>
                             <p className='text-xs font-medium text-gray-500'>{userData?.email}</p>
                         </div>
@@ -58,9 +58,7 @@ function Dashboard() {
                 <div className='space-y-4 columns-1 sm:columns-2 lg:columns-3'>
                     
                 </div>
-
             </PageContent>
-
         </div>
     )
 }
