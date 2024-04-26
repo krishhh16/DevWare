@@ -129,7 +129,7 @@ console.log(messages);
     if (!response.data.success) {
       alert("Responses failed to submit")
     } else {
-     window.location.href = "http://localhost:300/app/dashboard"
+     window.location.href = "http://localhost:3000/app/dashboard"
     }
   }
 
