@@ -1,0 +1,42 @@
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = "5"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Feedback {
+  email   String @id
+  content String
+}
+
+model GHData {
+  email   String @id @unique
+  content String
+}
+
+model KnowledgeBase {
+  email  String  @id
+  post   String?
+  resume String?
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String?
+  email    String  @unique
+  password String
+}
+
+model UserInsights {
+  email   String @id
+  content String
+}
+
+model UserOnboard {
+  email   String @id
+  content String
+}
