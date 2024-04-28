@@ -7,20 +7,15 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function Integrations() {
-    const [file, setFile] = useState('');
-    
+    const [file, setFile] = useState('')
     const [post, setPost] = useState('') 
 
+    
     const onPost = async () => {
         const response = await axios.post('http://localhost:3000/api/pref-post', {
             post 
         })
-
-        if (!response.data.success){
-            alert('Unable to upload your posts')
-        }else {
-            alert('Post Uploaded')
-        }
+       
     }
     const submitPdf = async (e) => {
         e.preventDefault()
@@ -31,12 +26,17 @@ function Integrations() {
         const result = await axios.post("http://localhost:3001/upload-file", formData, {
             headers: { "Content-Type" : "multipart/form-data"},
         });
+        
+        const uploadData = await axios.post("http://localhost:3000/api/pref-post", {
+            data: result.data.text,
+            field: "resume"
+        });
 
-       if (result.data.success){
-        alert('success')
-       }else{
-        alert('Unable to upload resume data')
-       }
+        if (uploadData.data.success) {
+            alert('Resume Uploaded')
+        } else {
+            alert("Unable to upload resume")
+        }
     }   
 
     return (
@@ -62,7 +62,6 @@ function Integrations() {
                     <h3>Upload Your resume</h3>
                     <input onChange={(e)=> {setFile(e.target.files[0])} } type='file' className='form-control' accept='application/pdf'/>
                     <button type='submit'>Submit</button>
-                   
                 </div>
                 <div>
                     <h3>Post the posts that you like</h3>

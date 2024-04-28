@@ -43,13 +43,7 @@ app.post('/upload-file', upload.single('file'), async (req, res) => {
   const pdfPath =  req.file.path
 extractTextFromPDF(pdfPath)
     .then(text => {
-        const response = axios.post('http://localhost:3000/api/pref-post', {
-          data: text,
-          field: 'resume'
-        });
-        if (response.data.success){
-          return res.json({success: true})
-        }
+        res.json({text});
     })
     .catch(error => {
         console.error('Error extracting text from PDF:', error);
