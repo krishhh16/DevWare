@@ -10,14 +10,11 @@ export default function() {
     const [post, setPost] = useState('')
     const postGenerate = async (e) => {
         e.preventDefault();
-        const response = await axios.post('http://localhost:8080', {
-         userThought,
-         type,
-         userTone   
-        })
-
+        const thoughts = encodeURIComponent(userThought)
+        const response = await axios.get(`http://localhost:8000/?context=${type}&tone=${userTone}&thoughts=${thoughts}`)
+        
         if (response.data.success) {
-            setPost(response.data.post)
+            setPost(response.data.post.content)
         }else {
             alert('Unable to post')
         }
@@ -26,7 +23,7 @@ export default function() {
         <div className="max-w-md mx-auto bg-white shadow-md p-6 rounded-md">
     <form onSubmit={postGenerate}>
         <div className="mb-4">
-            <textarea className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" value={userText} onChange={(e) => setUserText(e.target.value)} placeholder="Share your today's thoughts"></textarea>
+            <textarea className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" value={userThought} onChange={(e) => setUserText(e.target.value)} placeholder="Share your today's thoughts"></textarea>
         </div>
         <div className="mb-4">
             <h1 className="text-black">Context</h1>
@@ -48,9 +45,15 @@ export default function() {
         </div>
         <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring focus:border-blue-300">Generate Post</button>
     </form>
+    { post ?
+    <div className="text-green-500">
+        <h2>{post}</h2>
+        <a target="_blank" href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post)}"` }>Post it on twitter</a>
+    </div> :
     <div>
-        {post}
+
     </div>
+    }
 </div>
 
     )
