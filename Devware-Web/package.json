@@ -5,7 +5,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "installAll": "cd apps/web; npm install; cd ../upload-file; npm install; cd ../../packages/db; npm install"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
