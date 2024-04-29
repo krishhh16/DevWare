@@ -8,8 +8,6 @@ app.use(express.json());
 const axios  = require('axios')
 function extractTextFromPDF(pdfPath) {
   return new Promise((resolve, reject) => {
-      // Read PDF file
-
       const pdfBuffer = fs.readFileSync(pdfPath);
 
       // Parse PDF
@@ -39,7 +37,6 @@ app.get('/', (req, res) => {
   res.send('hello world')
 })
 app.post('/upload-file', upload.single('file'), async (req, res) => {
-  console.log(req.cookies)
   const pdfPath =  req.file.path
 extractTextFromPDF(pdfPath)
     .then(text => {
