@@ -11,7 +11,7 @@ export default function() {
     const postGenerate = async (e) => {
         e.preventDefault();
         const thoughts = encodeURIComponent(userThought)
-        const response = await axios.get(`http://localhost:8000/?context=${type}&tone=${userTone}&thoughts=${thoughts}`)
+                                 const response = await axios.get(`http://localhost:8000/?context=${type}&tone=${userTone}&thoughts=${thoughts}`)
         
         if (response.data.success) {
             setPost(response.data.post.content)
@@ -20,14 +20,14 @@ export default function() {
         }
     }
     return (
-        <div className="max-w-md mx-auto bg-white shadow-md p-6 rounded-md">
+        <div className=" mx-5 bg-white shadow-md p-6 rounded-md mt-10">
     <form onSubmit={postGenerate}>
         <div className="mb-4">
             <textarea className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" value={userThought} onChange={(e) => setUserText(e.target.value)} placeholder="Share your today's thoughts"></textarea>
         </div>
         <div className="mb-4">
             <h1 className="text-black">Context</h1>
-            <select id="dropdownMenu" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" onChange={(e) => { setUserSelect(e.target.value) }}>
+            <select id="dropdownMenu" defaultValue="New Exposure" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" onChange={(e) => { setUserSelect(e.target.value) }}>
                 <option value="Personal Experience">Personal Experience</option>
                 <option value="New Exposure">New Exposure</option>
                 <option value="New Learning">New Learning</option>
@@ -36,7 +36,7 @@ export default function() {
         </div>
         <div className="mb-4">
             <h1 className="text-black">Tone</h1>
-            <select id="dropdownMenu" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" onChange={(e) => { setUserTone(e.target.value) }}>
+            <select id="dropdownMenu" defaultValue="professional" className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" onChange={(e) => { setUserTone(e.target.value) }}>
                 <option value="professional">Professional tone</option>
                 <option value="casual">Casual</option>
                 <option value="excited">Excited</option>

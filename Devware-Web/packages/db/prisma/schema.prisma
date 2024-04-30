@@ -14,36 +14,45 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   username String?
   email String @unique
   password String
 }
 
 model Feedback {
-  email String @id
+  id String @id @default(uuid())
+  email String 
   content String
 }
 
 model KnowledgeBase {
-  email String @id
+  id String @id @default(uuid())
+  email String 
   post String?
   resume String?
 }
     
 model GHData {
-  email String @unique @id
+  id String @id @default(uuid())
+  email String @unique
   content String
 }
 
 model UserInsights{
-  email String @id
+  id String @id @default(uuid())
+  email String @unique
   content String
 }
 
 model UserOnboard {
-  email String @id
+  id String @id @default(uuid())
+  email String @unique
   content String
 }
 
-
+model Post {
+  id String @id @default(uuid())
+  email String 
+  post String
+}

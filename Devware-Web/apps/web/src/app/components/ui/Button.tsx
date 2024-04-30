@@ -18,7 +18,7 @@ const OutlineButton = React.forwardRef<
     (({ className, ...props }, ref) =>
         <button
             ref={ref}
-            className='h-8 w-8 gap-1 md:w-auto border py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center'
+            
             {...props}
         />
     )

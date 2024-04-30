@@ -19,11 +19,25 @@ export async function POST(req: NextRequest) {
       const octokit = new Octokit({ 
         auth: accessToken
       });
+
       const userExists = await prisma.user.findFirst({
         where: {
           email,
-        },
+        }, 
       });
+
+      console.log(userExists)
+
+      if (!userExists) {
+        await prisma.user.create({
+          data: {
+            email,
+            username,
+            password
+          }
+        })
+      }
+
       const response = await octokit.request(`GET /users/{username}/repos`,{username})
       
       let arr = [];
@@ -59,14 +73,16 @@ export async function POST(req: NextRequest) {
            })
       });
       
-            
+      try {   
       await prisma.gHData.create({
         data : {
           email,
           content: str
         }
       });
-     
+     } catch(err){
+      return NextResponse.json({success: false, msg: "Unique constraint"})
+     }
       if (userExists) {
         return NextResponse.json({success: false, msg: 'user Already exists'}, {status: 200})
       }
@@ -86,7 +102,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({success: true}, {status: 200})
       } catch (error) {
         console.error('Error creating user:', error);
-        return NextResponse.json({success: true}, {status: 200})
+        return NextResponse.json({success: false}, {status: 200})
       }
     
   }

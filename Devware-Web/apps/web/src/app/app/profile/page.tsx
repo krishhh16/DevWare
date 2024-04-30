@@ -9,7 +9,6 @@ import z from "zod"
 import { initializeApp } from "firebase/app";
 import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
-
 const provider = new GithubAuthProvider();
 provider.addScope('repo')
 const firebaseConfig = {
@@ -97,91 +96,100 @@ function Teams() {
         setUser(user.data)
     }
     return (
-        <div className='text-gray-500 w-full'>
+        <div className='text-gray-500 w-full m-4 ml-4'>
             <PageNavbar>
                 <PageNavbarLeftContent>
-                    <div>
-                        <h1 className='text-sm font-semibold text-red-800'>Profile Settings</h1>
-                        <p className='text-xs font-medium'>Manage Your account details from this interface</p>
+                    <div className="text-white flex flex-col mt-10">
+                        <h1 className="text-3xl font-semibold mb-2 ">Profile Settings</h1>
+                        <p className="text-gray-400 mb-10">Manage your account details from this interface</p>
                     </div>
                 </PageNavbarLeftContent>
                 </PageNavbar>
-
             <PageContent>
-                {/* header */}
-                <div className='text-sm md:pb-2 flex items-center justify-between'>
-                    <div className='flex gap-2'>
-                    <label className='text-blue-800' htmlFor="username">Username</label>
-                    <input type ="text" onChange={(e) => {
-                        setUserChange(false)
-                        setUserName(e.target.value)
-                        console.log(username)
-                    }} placeholder={userData?.userName} value={ userChange ? userData?.userName : username} />
-                        <OutlineButton>
-                    <div>
-                        {   userChange ?
-                            <h1 className='text-sm justify-center font-semibold text-red-800'>Change username to update credentials</h1>
-                            :
-                            <h1 onClick={() => {
-                                updateUserData(UserEnum.USERNAME, username)
-                            }} className='text-sm justify-center font-semibold text-red-800' >Update Username</h1>
-                        }
+                <div className="space-y-6">
+                    <div className="border-b border-gray-700 pb-5">
+                        <label className="block text-lg font-medium mb-1 text-white" htmlFor="username">Username</label>
+                        <div className="flex items-center">
+                        <input
+                        className="bg-gray-800 border-none text-sm rounded-md p-2" 
+                        type="text" onChange={(e) => {
+                            setUserChange(false)
+                            setUserName(e.target.value)
+                            console.log(username)
+                        }} placeholder={userData?.userName} value={userChange ? userData?.userName : username} />
+                        <div className="ml-4 bg-blue-600 hover:bg-blue-700 text-white p-1.5 rounded-md">
+                            <OutlineButton>
+                                    {userChange ?
+                                        <h1 className='block text-sm font-small mb-1 text-center pt-0.8'>Change username to update credentials</h1>
+                                        :
+                                        <h1 onClick={() => {
+                                            updateUserData(UserEnum.USERNAME, username)
+                                        }} className='block text-sm font-small mb-1 text-center pt-0.8' >Update Username</h1>
+                                    }
+                            </OutlineButton>
+                        </div>
+                        </div>
                     </div>
-                        </OutlineButton>
-                    </div>
-
                 </div>
-                    <hr className='-mx-4' />
-                <div className='text-sm md:pb-2 flex items-center justify-between'>
-                    <div className='flex gap-2'>
-                    <label className='text-blue-800' htmlFor="username">Email Adress</label>
-                    <input type ="email" onChange={(e) => {
+
+               
+                <div className="space-y-6">
+                    <div className="border-b border-gray-700 pb-5">
+                    <label className="block text-lg font-medium mb-1 text-white" htmlFor="username">Email Address</label>
+                    <div className="flex items-center">
+                    <input type ="email"
+                    className="bg-gray-800 border-none text-sm rounded-md p-2 w-[21%]"  
+                    onChange={(e) => {
                         setEmailChange(false)
                         setEmail(e.target.value)
                         console.log(email)
                         }} placeholder={userData?.email} 
                         value={ emailChange ? userData?.email : email}
-                        />
+                    />
+                        <div className="ml-4 bg-blue-600 hover:bg-blue-700 text-white p-1.5 rounded-md">
                         <OutlineButton>
-                    
-                        {   emailChange ?
+                        {   emailChange?
                         <div>
-                            <h1 className='text-sm justify-center font-semibold text-red-800'>Change Email to update credentials</h1>
+                            <h1 className='block text-sm font-small mb-1 text-center pt-0.8' >Change Email to update credentials</h1>
                         </div>
                             :
                             <div onClick={() => {updateUserData(UserEnum.EMAIL, email)}}>
-                                <h1 className='text-sm justify-center font-semibold text-red-800'>Update Email</h1>
+                                <h1 className='block text-sm font-small mb-1 text-center pt-0.8'>Update Email</h1>
                              </div>
                         }
-                    
                         </OutlineButton>
+                        </div>
+                    </div>
                     </div>
                 </div>
 
-                <hr className='-mx-4' />
-                <div className='text-sm md:pb-2 flex items-center justify-between'>
-                    <div className='flex gap-2'>
-                    <label className='text-blue-800' htmlFor="username">Password</label>
-                    <input
-                        value={password}
-                        type ="password" onChange={(e) => {
-                        setPasswordChange(false)
-                        setPassword(e.target.value)
-                        console.log(email)
-                        }}/>
-                        <OutlineButton>
-                    <div onClick={() => {
-                        updateUserData(UserEnum.PASSWORD, password)
-                    }}>
-                          <h1 className='text-sm justify-center font-semibold text-red-800' >Update Password</h1>
-                        
-                    </div>
-                        </OutlineButton>
+                <div className="space-y-6">
+                    <div className="border-b border-gray-700 pb-5">
+                        <label className="block text-lg font-medium mb-1 text-white" htmlFor="username">Password</label>
+                        <div className="flex items-center">
+                            <input
+                                value={password}
+                                className="bg-gray-800 border-none text-sm rounded-md p-2 w-1/4"
+                                type="password" onChange={(e) => {
+                                    setPasswordChange(false)
+                                    setPassword(e.target.value)
+                                    console.log(email)
+                                }} />
+                            
+                            <div className='ml-4 bg-blue-600 hover:bg-blue-700 text-white p-1.5 rounded-md'>
+                            <OutlineButton>
+                                <div onClick={() => {
+                                    updateUserData(UserEnum.PASSWORD, password)
+                                }}>
+                                    <h1 className='block text-sm font-small mb-1 text-center pt-0.8 w-60'>Update Password</h1>
+
+                                </div>
+                            </OutlineButton>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
-
+                
             </PageContent>
 
         </div>

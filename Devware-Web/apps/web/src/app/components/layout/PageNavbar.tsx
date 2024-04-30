@@ -66,10 +66,8 @@ function PageNavbar({ children }: { children: React.ReactNode }) {
                 <button onClick={() => setIsSidebarOpen(true)} className='all-center text-gray-500 h-8 w-8 md:hidden'>
                     <SidebarLeft size={16} />
                 </button>
-
+                
             </div>
-
-            <hr className='bg-gray-400 mx-2' />
 
         </div>
     )
