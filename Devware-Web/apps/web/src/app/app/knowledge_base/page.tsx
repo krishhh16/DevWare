@@ -40,38 +40,61 @@ function Integrations() {
     }   
 
     return (
-        <div>
+        <div className='text-gray-500 w-full m-4 ml-4'>
             <PageNavbar>
                 <PageNavbarLeftContent>
-                    <div>
-                        <h1 className='text-sm font-semibold text-white-800'>Knowledge base</h1>
-                        <p className='text-xs font-medium text-white-500'>Manage your Knowledge base that will be sent to your chatbot</p>
+                    <div className="text-white flex flex-col mt-10">
+                        <h1 className="text-3xl font-semibold mb-2 ">Knowledge base</h1>
+                        <p className="text-gray-400 mb-4">Manage your Knowledge base that will be sent to your chatbot</p>
                     </div>
                 </PageNavbarLeftContent>
                 <PageNavbarRightContent>
-                    <PageNavbarPrimaryButton>
-                        <Add size={16} />
-                        <span className='hidden md:inline'>Add KB</span>
-                    </PageNavbarPrimaryButton>
+                    
                 </PageNavbarRightContent>
             </PageNavbar>
-
             <PageContent>
-               <form onSubmit={submitPdf}>
-                <div>
-                    <h3>Upload Your resume</h3>
-                    <input onChange={(e)=> {setFile(e.target.files[0])} } type='file' className='form-control' accept='application/pdf'/>
-                    <button type='submit'>Submit</button>
-                </div>
-                <div>
-                    <h3>Post the posts that you like</h3>
-                    <textarea onChange={(e) => {
-                        setPost(e.target.value)
-                        }} value={post}>
-                    </textarea>
-                    <button onClick={() => {onPost()}} ></button>
-                </div>
-               </form>
+            <div className="text-left m-4 ml-4">
+    <form onSubmit={submitPdf} className="max-w-md mt-2">
+        <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2 text-white">Upload Your Resume</h3>
+            <input
+                onChange={(e) => {setFile(e.target.files[0])}}
+                type='file'
+                className='border border-gray-300 rounded-md py-2 px-4 w-full'
+                accept='application/pdf'
+            />
+        </div>
+        <div className="text-left">
+            <button
+                type='submit'
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md"
+            >
+                Submit
+            </button>
+        </div>
+    </form>
+    <form onSubmit={onPost} className="max-w-md mt-8">
+        <div className="mb-4">
+            <h3 className="text-lg font-semibold mb-2 text-white">Post the Posts that You Like</h3>
+            <textarea
+                onChange={(e) => {setPost(e.target.value)}}
+                value={post}
+                className="border border-gray-300 rounded-md py-2 px-4 w-full"
+            ></textarea>
+        </div>
+        <div className="text-left">
+            <button
+                type='submit'
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md"
+            >
+                Post
+            </button>
+        </div>
+    </form>
+
+</div>
+
+
 
             </PageContent>
 

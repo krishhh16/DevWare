@@ -33,13 +33,13 @@ function Dashboard() {
                         />
                         <div>
                             <p className='text-sm font-semibold text-red-800'>{userData?.userName}</p>
-                            <p className='text-xs font-medium text-gray-500'>{userData?.email}</p>
+                            <p className='text-xs font-medium text-gray-500'>{userData?.email.slice(0,10) + "...." + userData?.email.slice(20,-1)}</p>
                         </div>
                 </PageNavbarLeftContent>
 
                 <PageNavbarRightContent>
-                <PageNavbarPrimaryButton className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-white rounded-lg text-xs md:flex items-center justify-center'>
-                        <button onClick={handleTwitter}>
+                <PageNavbarPrimaryButton className='h-8 gap-1 w-60 bg-primary hidden duration-200 text-white rounded-lg text-xs md:flex items-center justify-center'>
+                        <button className='flex gap-1 py-2 px-1' onClick={handleTwitter}>
                             <span>Connect your Twitter</span>
                             <svg style={{height:20,width:20}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
                         </button>
