@@ -55,7 +55,7 @@ async def main() -> None:
 def initials(context, thoughts, tone):
     chat = ChatOpenAI(
         temperature=0.9,
-        openai_api_key='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',
+        openai_api_key='',
         model='gpt-4'
     )
 
