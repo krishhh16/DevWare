@@ -5,6 +5,8 @@ import Contact from "@/app/components/Contact";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 
+export const runtime = 'edge'
+
 
 const ContactPage = () => {
   useEffect(()=>{

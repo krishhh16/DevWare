@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 
+export const runtime = 'edge'
+
 export default function() {
     const [userThought, setUserText] = useState('');
     const [type, setUserSelect] = useState("");

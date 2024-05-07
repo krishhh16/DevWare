@@ -6,6 +6,8 @@ import PageContent from '@/app/components/layout/PageContent';
 import axios from 'axios';
 import { useState } from 'react';
 
+export const runtime = 'edge'
+
 function Integrations() {
     const [file, setFile] = useState('')
     const [post, setPost] = useState('') 

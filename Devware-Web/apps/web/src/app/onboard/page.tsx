@@ -3,6 +3,8 @@ import './onboard.css'
 import { useState } from 'react';
 import axios from 'axios';
 
+export const runtime = 'edge'
+
 export default function onBoard() {
   
   const [userChoice, setChoice] = useState({});

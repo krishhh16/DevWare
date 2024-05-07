@@ -10,6 +10,9 @@ import { SetStateAction, useEffect, useState } from 'react'
 import handleTwitter from "@/utils/handleTwitter";
 import axios, { AxiosResponse } from 'axios'
 import Link from 'next/link'
+
+export const runtime = 'edge'
+
 function Dashboard() {
     const [userData, setUser] = useState<AxiosResponse<any, any>>()
     useEffect(()=> {
