@@ -13,10 +13,12 @@ export async function GET(req: NextRequest){
     })
 
     console.log(userData)
-
+    if (!userData) {
+        return NextResponse.json({success: false, msg: "Failed to fetch user data"})
+    }
     return NextResponse.json({userName: userData.username, email: userData.email}
         )} catch(err){
             console.log(err)
-            return NextResponse.json({err})
+            return NextResponse.json({success:false})
         }
 }

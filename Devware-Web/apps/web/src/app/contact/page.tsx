@@ -1,21 +1,33 @@
+"use client"
+
 import Breadcrumb from "@/app/components/Common/Breadcrumb";
 import Contact from "@/app/components/Contact";
+import Cal, { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Contact Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Contact Page for Startup Nextjs Template",
-  // other metadata
-};
 
 const ContactPage = () => {
+  useEffect(()=>{
+	  (async function () {
+		const cal = await getCalApi({});
+		cal("ui", {"theme":"light","styles":{"branding":{"brandColor":"#121723"}},"hideEventTypeDetails":false,"layout":"month_view"});
+	  })();
+	}, []);
+
+  
   return (
     <>
+    
+    
       <Breadcrumb
         pageName="Contact Page"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero."
+        description="Every criticism and feature-request will surely be considered and worked on:)) "
       />
+      <Cal 
+      calLink="krishna-tripathi-obpadr/30min"
+      style={{width:"100%",height:"100%",overflow:"scroll"}}
+      config={{layout: 'month_view'}}
+    />
 
       <Contact />
     </>

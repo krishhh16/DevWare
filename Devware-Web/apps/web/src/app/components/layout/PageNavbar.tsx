@@ -1,6 +1,7 @@
 import React from 'react'
 import { SidebarLeft } from 'iconsax-react'
 import { useCentralStore } from '../Store'
+import dynamic from 'next/dynamic';
 
 const PageNavbarLeftContent = React.forwardRef<
     HTMLDivElement,
@@ -73,6 +74,6 @@ function PageNavbar({ children }: { children: React.ReactNode }) {
     )
 }
 
-export default PageNavbar
+export default dynamic(() => Promise.resolve(PageNavbar),{ssr:false})
 
 export { PageNavbarLeftContent, PageNavbarRightContent, PageNavbarIconButton, PageNavbarPrimaryButton }
