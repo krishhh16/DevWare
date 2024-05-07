@@ -86,10 +86,6 @@ function Sidebar() {
                                     <p className='text-xs font-medium text-gray-500'>{userData?.email.slice(0,10) + "...." + userData?.email.slice(20,-1)}</p>
                                 </div>
                             </div>
-
-                            <button className='text-gray-500'>
-                                <ArrowRight2 size={16} />
-                            </button>
                         </div>
                     </div>
 

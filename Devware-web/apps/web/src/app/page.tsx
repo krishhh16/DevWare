@@ -7,6 +7,7 @@ import Hero from "@/app/components/Hero";
 import Pricing from "@/app/components/Pricing";
 import { Metadata } from "next";
 
+export const runtime = 'edge'
 export const metadata: Metadata = {
   title: "DevWare",
 };

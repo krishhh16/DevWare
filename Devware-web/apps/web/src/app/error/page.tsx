@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   // other metadata
 };
 
+export const runtime = 'edge'
+
 const ErrorPage = () => {
   return (
     <>

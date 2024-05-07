@@ -6,19 +6,26 @@ import PageContent from '@/app/components/layout/PageContent';
 import axios from 'axios';
 import { useState } from 'react';
 
+export const runtime = 'edge'
+
 function Integrations() {
     const [file, setFile] = useState('')
     const [post, setPost] = useState('') 
 
     
     const onPost = async () => {
+        if (post.length != 0){
         const response = await axios.post('http://localhost:3000/api/pref-post', {
             post 
         })
+    } else {
+        alert("please put some content inside the Post field to add preferred posts")
+    }
        
     }
     const submitPdf = async (e) => {
         e.preventDefault()
+        try{
         const formData= new FormData();
         formData.append('file', file)
         console.log(file);
@@ -37,6 +44,9 @@ function Integrations() {
         } else {
             alert("Unable to upload resume")
         }
+    } catch (err) {
+        alert("AN ERROR OCCURED WHILE UPLOADING")
+    }
     }   
 
     return (

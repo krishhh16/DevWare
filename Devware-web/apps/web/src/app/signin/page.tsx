@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 import { initializeApp } from "firebase/app";
 import { GithubAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
+export const runtime = 'edge'
+
 const userDataSchema = object({
   email: string().email(),
   password: string(),

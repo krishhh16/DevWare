@@ -18,6 +18,7 @@ const nextConfig = {
       },
     ],
   },
+  suppressHydrationWarning: true,
 };
 
 module.exports = nextConfig;

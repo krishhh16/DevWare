@@ -6,6 +6,8 @@ import Sidebar from "@/app/components/Sidebar"
 import { useCentralStore } from "../components/Store"
 import axios, { AxiosResponse } from "axios"
 
+export const runtime = 'edge'
+
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
     
 
