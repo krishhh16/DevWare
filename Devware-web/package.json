@@ -1,0 +1,32 @@
+{
+  "name": "something",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "installAll": "cd apps/web; npm install; cd ../upload-file; npm install; cd ../../packages/db; npm install"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/cors": "^2.8.17",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.5.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "@calcom/embed-react": "^1.4.0",
+    "firebase": "^10.11.0",
+    "octokit": "^3.2.0",
+    "pdf-parse": "^1.1.1"
+  }
+}
