@@ -13,12 +13,15 @@ import Link from 'next/link'
 
 export const runtime = 'edge'
 
+interface UserData{
+    username: string
+}
 function Dashboard() {
-    const [userData, setUser] = useState<AxiosResponse<any, any>>()
-    useEffect(()=> {
+    const [userData, setUser] = useState<string>("")
+    useEffect(function (){
         something()
     }, [])
-    const [userPosts, setUserPosts] = useState(null)
+    const [userPosts, setUserPosts] = useState("")
 
     async function something(){
        try{
@@ -27,8 +30,8 @@ function Dashboard() {
            alert('hell no!!')
             return;
         }
-        
-        setUser(user.data)
+        if (user.data !== undefined){
+        setUser(user.data)}
        }catch(err){
         console.log(err)
          window.location.href = "http://localhost:3000/"
@@ -60,7 +63,9 @@ function Dashboard() {
                             className='rounded-full'
                         />
                         <div>
+                            {/* //@ts-ignore */}
                             <p className='text-sm font-semibold text-red-800'>{userData?.userName}</p>
+                            {/* //@ts-ignore */}
                             <p className='text-xs font-medium text-gray-500'>{userData?.email.slice(0,10) + "...." + userData?.email.slice(20,-1)}</p>
                         </div>
                 </PageNavbarLeftContent>
@@ -130,6 +135,7 @@ function Dashboard() {
     <div className="flex flex-col gap-10">
         <h1 className="font-semibold text-2xl text-white mt-5">Your Previously Generated Posts</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 ">
+              {/* //@ts-ignore */}
             {userPosts.map((item, index) => (
                 <div key={index} className="bg-gray-100 text-black p-5 rounded-lg">
                     <h3>{item.content}</h3>

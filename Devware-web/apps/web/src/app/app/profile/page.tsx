@@ -26,7 +26,7 @@ const prov = new GithubAuthProvider();
 
 const emailSchema = z.coerce.string().email({message: "Invalid email address"});
 
-export enum UserEnum {
+enum UserEnum {
     USERNAME,
     EMAIL,
     PASSWORD
