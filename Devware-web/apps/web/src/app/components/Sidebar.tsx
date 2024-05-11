@@ -9,7 +9,6 @@ import { useCentralStore } from './Store'
 import React, { SetStateAction, useEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 
-
 function Sidebar() {
     const pathname = usePathname()
     const [userData, setUser] = useState<SetStateAction<Promise<AxiosResponse<any, any>>>>()
@@ -82,7 +81,9 @@ function Sidebar() {
                                     className='rounded-full'
                                 />
                                 <div className=''>
+                                    {/* //@ts-ignore */}
                                     <p className='text-sm font-semibold text-gray-800'>{userData?.userName}</p>
+                                    {/* //@ts-ignore */}
                                     <p className='text-xs font-medium text-gray-500'>{userData?.email.slice(0,10) + "...." + userData?.email.slice(20,-1)}</p>
                                 </div>
                             </div>

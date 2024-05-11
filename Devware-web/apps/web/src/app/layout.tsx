@@ -5,6 +5,7 @@ import Header from "@/app/components/Header";
 import ScrollToTop from "@/app/components/ScrollToTop";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
+export const runtime = 'edge'
 
 const inter = Inter({ subsets: ["latin"] });
 
